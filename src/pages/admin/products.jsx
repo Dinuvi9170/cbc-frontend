@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { FaEdit, FaTrash } from "react-icons/fa";
+import toast from "react-hot-toast";
 
 const AdminProducts=()=>{
     const [products,setproducts]= useState([]);
+    const navigate= useNavigate();
 
     useEffect(
         ()=>{
@@ -20,6 +22,24 @@ const AdminProducts=()=>{
             })
         },[]
     )
+    const handleDeleteproduct =(productId)=>{
+        const token = localStorage.getItem("token");
+        if(token===null){
+            toast.error("Please login first")
+            return;
+        }
+
+        axios.delete(import.meta.env.VITE_BACKEND_URL+"/api/products/"+ productId,{
+                headers:{
+                    "Authorization":"Bearer "+token
+                }
+            })
+            .then(()=>{
+                toast.success("Product deleted successfully")
+            }).catch((e)=>{
+                toast.error(e.response.data.message)
+            })
+    }
     return(
         <div className="w-full h-full max-h-full overflow-y-scroll relative">
             <Link to="/admin/addproducts" className="absolute top-0 right-6 text-md border border-white w-35 h-10 py-2 font-bold bg-green-900 text-white rounded-lg text-center cursor-pointer">+Add Product</Link>
@@ -47,8 +67,18 @@ const AdminProducts=()=>{
                                 <th>{product.stock}</th>
                                 <th>
                                     <div className="flex justify-center items-center gap-5 cursor-pointer">
-                                        <FaTrash color="red"/>
-                                        <FaEdit color="blue"/>
+                                        <FaTrash color="red"
+                                            onClick={()=>{
+                                                handleDeleteproduct(product.productId)
+                                            }}
+                                        />
+                                        <FaEdit color="blue"
+                                            onClick={()=>{
+                                                navigate('/admin/editproducts',{
+                                                    state:product
+                                                })
+                                            }}
+                                        />
                                     </div>
                                 </th>
                             </tr>
