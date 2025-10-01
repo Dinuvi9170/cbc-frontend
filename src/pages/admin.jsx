@@ -11,7 +11,7 @@ const Admin =()=>{
                 <Link to="/admin/orders">Orders</Link>
                 <Link to="/admin/reviews">Reviews</Link>
             </div>
-            <div className="h-full w-[calc(100%-300px)] bg-amber-50 py-10">
+            <div className="h-full w-[calc(100%-300px)] bg-amber-50 py-5">
                 <Routes>
                     <Route path='products' element={<AdminProducts/>}/>
                     <Route path='users' element={<h1>Users</h1>}/>
