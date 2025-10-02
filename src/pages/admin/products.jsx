@@ -2,26 +2,31 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { FaEdit, FaTrash } from "react-icons/fa";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import toast from "react-hot-toast";
 
 const AdminProducts=()=>{
     const [products,setproducts]= useState([]);
     const navigate= useNavigate();
+    const [isLoading,setIsloading]=useState(true);
 
     useEffect(
         ()=>{
-            const token = localStorage.getItem("token");
-            axios.get(import.meta.env.VITE_BACKEND_URL+"/api/products/",{
-                headers:{
-                    "Authorization":"Bearer "+token
-                }
-            })
-            .then((res)=>{
-                console.log(res.data)
-                setproducts(res.data)
-            })
-        },[]
-    )
+            if(isLoading===true){
+                const token = localStorage.getItem("token");
+                axios.get(import.meta.env.VITE_BACKEND_URL+"/api/products/",{
+                    headers:{
+                        "Authorization":"Bearer "+token
+                    }
+                })
+                .then((res)=>{
+                    console.log(res.data);
+                    setproducts(res.data);
+                    setIsloading(false);
+                })
+            }
+        },[isLoading]
+    );
     const handleDeleteproduct =(productId)=>{
         const token = localStorage.getItem("token");
         if(token===null){
@@ -43,50 +48,58 @@ const AdminProducts=()=>{
     return(
         <div className="w-full h-full max-h-full overflow-y-scroll relative">
             <Link to="/admin/addproducts" className="absolute top-0 right-6 text-md border border-white w-35 h-10 py-2 font-bold bg-green-900 text-white rounded-lg text-center cursor-pointer">+Add Product</Link>
-            <table className="w-full text-center mt-12">
-                <thead>
-                    <tr>
-                        <th>productId</th>
-                        <th>product Name</th>
-                        <th>product Image</th>
-                        <th>Labelled Price</th>
-                        <th>price</th>
-                        <th>Stock</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {products.map((product)=>{
-                        return(
-                             <tr key={product.productId}> 
-                                <th>{product.productId}</th>
-                                <th>{product.name}</th>
-                                <th><img src={product.images[0]} className="w-[40px] h-[40px] "/></th>
-                                <th>{product.labeledPrice}</th>
-                                <th>{product.normalPrice}</th>
-                                <th>{product.stock}</th>
-                                <th>
-                                    <div className="flex justify-center items-center gap-5 cursor-pointer">
-                                        <FaTrash color="red"
-                                            onClick={()=>{
-                                                handleDeleteproduct(product.productId)
-                                            }}
-                                        />
-                                        <FaEdit color="blue"
-                                            onClick={()=>{
-                                                navigate('/admin/editproducts',{
-                                                    state:product
-                                                })
-                                            }}
-                                        />
-                                    </div>
-                                </th>
-                            </tr>
-                            )
-                        })
-                    }
-                </tbody>
-            </table>
+            {!isLoading ?
+                <table className="w-full text-center mt-12">
+                    <thead>
+                        <tr>
+                            <th>productId</th>
+                            <th>product Name</th>
+                            <th>product Image</th>
+                            <th>Labelled Price</th>
+                            <th>price</th>
+                            <th>Stock</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {products.map((product)=>{
+                            return(
+                                <tr key={product.productId}> 
+                                    <th>{product.productId}</th>
+                                    <th>{product.name}</th>
+                                    <th><img src={product.images[0]} className="w-[40px] h-[40px] "/></th>
+                                    <th>{product.labeledPrice}</th>
+                                    <th>{product.normalPrice}</th>
+                                    <th>{product.stock}</th>
+                                    <th>
+                                        <div className="flex justify-center items-center gap-5 cursor-pointer">
+                                            <FaTrash color="red"
+                                                onClick={()=>{
+                                                    handleDeleteproduct(product.productId)
+                                                    setIsloading(true)
+                                                }}
+                                            />
+                                            <FaEdit color="blue"
+                                                onClick={()=>{
+                                                    navigate('/admin/editproducts',{
+                                                        state:product
+                                                    })
+                                                }}
+                                            />
+                                        </div>
+                                    </th>
+                                </tr>
+                                )
+                            })
+                        }
+                    </tbody>
+                </table>
+                :
+                <div className="w-full h-full flex flex-col justify-center items-center">
+                  <AiOutlineLoading3Quarters color="blue" className="w-6 h-6 animate-spin"/> 
+                  <h1 className="animate-pulse text--lg font-semibold text-blue-700">Loading...</h1>
+                </div>
+            }
         </div>
     )
 }

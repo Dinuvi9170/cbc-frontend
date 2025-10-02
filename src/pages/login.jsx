@@ -19,7 +19,7 @@ const Login =()=>{
             localStorage.setItem("token",response.data.token);
 
             if(response.data.role=="Admin"){
-                navigate('/admin');
+                navigate('/admin/products');
             }else{
                 navigate('/');
             }
