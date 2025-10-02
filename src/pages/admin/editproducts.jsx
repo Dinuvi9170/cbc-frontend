@@ -60,12 +60,12 @@ const EditProducts = () => {
     }
 
     return (
-        <div className="w-full h-full flex flex-col justify-center items-center ">
+        <div className="relative w-full h-full flex flex-col justify-center overflow-y-scroll items-center ">
             <form
-                className="flex flex-col gap-4 p-8 bg-gray-100 shadow-lg rounded-lg w-[500px]"
+                className="absolute flex flex-col gap-4 p-8 top-10 bottom-10 bg-gray-100 shadow-lg rounded-lg h-[1000px] w-[500px]"
             >
-                <h2 className="text-2xl font-bold text-center">Edit Product</h2>
-
+                <h2 className="text-2xl font-bold text-center text-green-700">Edit Product</h2>
+                <label className="text-center font-bold ">ProductId</label>
                 <input
                 type="text"
                 disabled
@@ -76,6 +76,7 @@ const EditProducts = () => {
                 required
                 />
 
+                <label className="text-center font-bold ">Name</label>
                 <input
                 type="text"
                 placeholder="Product Name"
@@ -85,6 +86,7 @@ const EditProducts = () => {
                 required
                 />
 
+                <label className="text-center font-bold ">Other Names</label>
                 <input
                 type="text"
                 placeholder="Alternative Name (optional)"
@@ -93,6 +95,7 @@ const EditProducts = () => {
                 className="border p-2 rounded"
                 />
 
+                <label className="text-center font-bold ">Description</label>
                 <textarea
                 placeholder="Description"
                 value={description}
@@ -101,6 +104,7 @@ const EditProducts = () => {
                 required
                 />
 
+                <label className="text-center font-bold ">Labelled Price</label>
                 <input
                 type="number"
                 placeholder="Labeled Price"
@@ -110,6 +114,7 @@ const EditProducts = () => {
                 required
                 />
 
+                <label className="text-center font-bold ">Price</label>
                 <input
                 type="number"
                 placeholder="Normal Price"
@@ -118,7 +123,8 @@ const EditProducts = () => {
                 className="border p-2 rounded"
                 required
                 />
-
+                
+                <label className="text-center font-bold ">Stock</label>
                 <input
                 type="number"
                 placeholder="Stock"
@@ -127,6 +133,7 @@ const EditProducts = () => {
                 className="border p-2 rounded"
                 />
 
+                <label className="text-center font-bold ">Product Images </label>
                 <input
                 type="file"
                 multiple
