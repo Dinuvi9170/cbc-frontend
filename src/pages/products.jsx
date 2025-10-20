@@ -1,7 +1,7 @@
 import axios from 'axios';
 import ProductCard from '../components/productCard'
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
-import { useState,useEffect } from 'react';
+import { useState,useEffect} from 'react';
 
 const Products= ()=>{
     const [products,setProducts]=useState([]);

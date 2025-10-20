@@ -1,6 +1,8 @@
+import { Link } from "react-router-dom";
+
 const ProductCard =({product}) =>{
     return(
-        <div className="flex flex-col px-2 py-2 bg-white shadow-md w-[300px] h-[400px] rounded-lg">
+        <Link to={`/products/${product.productId}`} className="flex flex-col px-2 py-2 bg-white shadow-md w-[300px] h-[400px] rounded-lg">
             <div className="w-full h-[200px] flex justify-center items-center overflow-hidden rounded-lg">
                 <img
                 src={product.images[0]}
@@ -32,7 +34,7 @@ const ProductCard =({product}) =>{
                 </span>
                 )}
             </div>
-        </div>
+        </Link>
     )
 };
 
