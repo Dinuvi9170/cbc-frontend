@@ -6,7 +6,7 @@ const Header =()=>{
             <Link to="/">
                 <div className="relative px-8 py-2 flex justify-center">
                     <img src={"/beautylogoremovebgpreview.png"} className="absolutew-[50px] h-[50px] object-cover "/>
-                    <div className="px-2 mr-2 flex flex-col text-2xl leading-none justify-center font-bold cursor-pointer">
+                    <div className="px-2 mr-2 flex flex-col text-3xl leading-none justify-center font-bold cursor-pointer">
                         <span className="text-acsent">Beauty</span>
                         <span className="text-acsent">Cosmatics</span>
                     </div>
