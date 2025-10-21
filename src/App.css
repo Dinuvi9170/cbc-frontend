@@ -1,1 +1,9 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Domine:wght@400..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Tinos:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+@theme {
+    --color-primary:#fffaf5 ;
+    --color-secondary:#EBD6FB ;
+    --color-acsent:#821742 ;
+    --font-main:"Inter", sans-serif;
+}

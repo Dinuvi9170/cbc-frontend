@@ -56,7 +56,7 @@ const Login =()=>{
                             onChange={(e)=>{setpassword(e.target.value)}}
                         />
                         <button 
-                            className="border border-white font-bold bg-green-200 text-green-800 mt-5 py-1 rounded-lg w-30 text-center mx-20 cursor-pointer"
+                            className="shadow-md font-bold bg-secondary text-acsent mt-5 py-1 rounded-lg w-30 text-center mx-20 cursor-pointer"
                             onClick={handlelogin} type="button"
                         >
                             Login

@@ -16,16 +16,16 @@ const ProductCard =({product}) =>{
                 <p className="text-sm text-gray-500 line-clamp-2">{product.description}</p>
 
                 <div className="flex items-center gap-2 mt-1">
-                <span className="text-gray-400 line-through text-sm">
-                    Rs. {product.labeledPrice.toFixed(2)}
-                </span>
-                <span className="text-green-600 font-bold text-lg">
-                    Rs. {product.normalPrice.toFixed(2)}
-                </span>
+                    <span className="text-gray-400 line-through text-sm">
+                        Rs. {product.labeledPrice.toFixed(2)}
+                    </span>
+                    <span className="text-acsent font-bold text-lg">
+                        Rs. {product.normalPrice.toFixed(2)}
+                    </span>
                 </div>
 
                 {product.stock > 0 ? (
-                <span className="text-sm font-medium text-green-700 mt-2">
+                <span className="text-sm font-medium text-acsent mt-2">
                     ✅ In Stock ({product.stock})
                 </span>
                 ) : (

@@ -25,7 +25,7 @@ const Products= ()=>{
     )
     return(
         (!isLoading)?
-        <div className='px-25 py-10'>
+        <div className='px-25 py-10 bg-primary w-full h-screen'>
             <div className='grid grid-cols-4 w-full h-full gap-y-4 justify-center'>
                 { products.map((product)=>{
                     return(
@@ -41,7 +41,7 @@ const Products= ()=>{
         :
         <div className="w-full h-screen flex flex-col justify-center items-center">
             <AiOutlineLoading3Quarters color="blue" className="w-6 h-6 animate-spin"/> 
-            <h1 className="animate-pulse text--lg font-semibold text-blue-700">Loading...</h1>
+            <h1 className="animate-pulse text-lg font-semibold text-blue-700">Loading...</h1>
         </div>
 
     )

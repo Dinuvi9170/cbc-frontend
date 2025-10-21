@@ -7,12 +7,12 @@ const Header =()=>{
                 <div className="relative px-8 py-2 flex justify-center">
                     <img src={"/beautylogoremovebgpreview.png"} className="absolutew-[50px] h-[50px] object-cover "/>
                     <div className="px-2 mr-2 flex flex-col text-2xl leading-none justify-center font-bold cursor-pointer">
-                        <span className="text-green-900">Beauty</span>
-                        <span className="text-pink-900">Cosmatics</span>
+                        <span className="text-acsent">Beauty</span>
+                        <span className="text-acsent">Cosmatics</span>
                     </div>
                 </div>
             </Link>
-            <div className="flex w-[calc(100%-100px)] justify-center items-center gap-8 ">
+            <div className="flex w-[calc(100%-100px)] justify-center items-center gap-8 text-acsent">
                 <Link to="/"className="text-xl font-semibold">Home</Link>
                 <Link to="/products" className="text-lg font-semibold">Products</Link>
                 <Link to="/about" className="text-xl font-semibold">About</Link>
