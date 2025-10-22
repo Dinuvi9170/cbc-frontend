@@ -28,7 +28,7 @@ const ProductOverview =()=>{
             )
         },[productId]
     )
-    
+
     return(
         <>
             {status=="loading"?(
@@ -43,11 +43,22 @@ const ProductOverview =()=>{
                 </div>
             ):
             (
-                <div className="flex w-full h-screen bg-primary px-50 py-10">
-                    <div className="w-1/2 h-full bg-red-300">
+                <div className="flex w-full h-screen bg-primary px-50 py-10 ">
+                    <div className="flex justify-center items-center w-1/2 h-full bg-white">
                         <ImageSlider images={product.images}/>
                     </div>
-                    <div className="w-1/2 h-full bg-green-300"></div>
+                    <div className="w-1/2 h-full bg-white flex flex-col px-10 py-10">
+                        <div className="text-center text-3xl font-semibold">{product.name}</div>
+                        <div className="flex justify-center">
+                            {product.alternativeNames?.map(
+                                (alt,index)=>(
+                                    <div key={index} className="text-center text-xl font-semibold">{alt+ "|"}</div>
+                                )
+                            )}
+                        </div>
+                        <div className="text-center text-sm text-gray-500 ">{product.productId}</div>
+                        <div className="text-md mt-5">{product.description}</div>
+                    </div>
                 </div>
             )}
         </>
