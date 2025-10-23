@@ -42,7 +42,11 @@ const Cart =()=>{
                                 <div className="flex w-2/5 flex-col ml-4 text-sm">
                                     <span>{product.productId}</span>
                                     <span>{product.name}</span>
-                                    <div className="flex gap-5 justify-start">
+                                    {(product.labeledPrice<=product.normalPrice)?(
+                                        <span className="text-acsent font-bold text-md">
+                                            Rs. {product.normalPrice.toFixed(2)}
+                                        </span>
+                                    ):(<div className="flex gap-5 justify-start">
                                         <span className="text-gray-500 line-through text-md">
                                             Rs. {product.labeledPrice.toFixed(2)}
                                         </span>
@@ -50,6 +54,7 @@ const Cart =()=>{
                                             Rs. {product.normalPrice.toFixed(2)}
                                         </span>
                                     </div>
+                                    )}
                                 </div>
                                 <div className="flex justify-center items-center ml-4">
                                     <button className=" p-3 font-bold text-red-600 text-3xl cursor-pointer "
