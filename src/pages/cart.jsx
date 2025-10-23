@@ -36,7 +36,7 @@ const Cart =()=>{
             {cart.map(
                 (product)=>{
                     return(
-                        <div key={product.productId} className="flex">
+                        <div key={product.productId} className="flex justify gap-1 center items-center">
                             <div className="w-[600px] h-[100px] m-1 items-center bg-white rounded-2xl shadow-2xl flex">
                                 <img className="object-cover w-25 h-25 rounded-2xl" src={product.image}/>
                                 <div className="flex w-2/5 flex-col ml-4 text-sm">
@@ -63,7 +63,7 @@ const Cart =()=>{
                                 <div className="ml-4 text-acsent font-bold text-lg">{(product.normalPrice*product.quantity).toFixed(2)}</div>
                             </div>
                             <div 
-                                className="flex justify center items-center p-3 cursor-pointer"
+                                className="flex w-8 h-8 justify-center items-center cursor-pointer hover:bg-red-300 hover:rounded-full "
                                 onClick={()=>removefromCart(product.productId)}
                             > 
                                 <BiTrash fill="red" className="w-6 h-6"/>

@@ -13,7 +13,7 @@ export const Addcart=(product,quantity)=>{
         return item.productId=== product.productId;
     })
     if(index!==-1){
-        const newqty= cart[index].quantity+quantity;
+        const newqty= cart[index].quantity+quantity ||1;
         if(newqty<=0){
             DeleteCart(product.productId);
             return;
