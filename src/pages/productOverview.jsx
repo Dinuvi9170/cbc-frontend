@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import ImageSlider from "../components/imageSlider";
 import { Addcart} from "../utils/cart";
 
@@ -10,6 +10,8 @@ const ProductOverview =()=>{
     const {productId}=useParams();
     const [product,setProduct]=useState(null);
     const [status,setStatus]=useState('loading')// success,loading,error
+    const [qty,setQuantity]=useState(null);
+    const navigate= useNavigate();
 
     useEffect(
         ()=>{
@@ -29,6 +31,28 @@ const ProductOverview =()=>{
             )
         },[productId]
     )
+
+    const handleQuantity=(action)=>{
+        if(qty>1){
+            if(action==="-"){
+                setQuantity(qty-1);
+            }
+        }
+        if(action==="+"){
+            setQuantity(qty+1);
+        }
+
+    }
+    const handleAddcart=(quantity)=>{
+        if(qty===null|| qty<=0){
+            quantity=1;
+        }else{
+            quantity=qty;
+        }
+        toast.success("product added to the cart successfully")
+        setQuantity(qty)
+        Addcart(product,quantity)
+    }
 
     return(
         <>
@@ -75,17 +99,42 @@ const ProductOverview =()=>{
                                 </span>
                             </div>
                         )}
+                        <div className="flex justify-center gap-5 mt-10">
+                            <span>Quantity</span>
+                            <div className="flex border border-2 border-secondary rounded-lg">
+                                <button 
+                                    className="bg-gray-200 rounded-tl-md font-bold text-xl rounded-bl-md px-2"
+                                    onClick={()=>{handleQuantity("-")}}>-</button>
+                                <span className="bg-white px-3">{qty || null}</span>
+                                <button 
+                                    className="bg-gray-200 rounded-tr-md font-bold text-xl rounded-br-md px-2"
+                                    onClick={()=>{handleQuantity("+")}}>+</button>
+                            </div>
+                        </div>
                         <div className="flex justify-center gap-4 mt-10">
                             <button 
-                                className="w-30 text-lg font-bold px-2 h-10 rounded-xl bg-secondary hover:bg-secondary/70 text-acsent cursor-pointer"
-                                 onClick={()=>{
-                                    Addcart(product, 1);
-                                }}
+                                className="bg-acsent hover:bg-acsent/80 text-white px-8 py-3 rounded-xl font-semibold text-lg shadow-md"
+                                 onClick={handleAddcart}
                             >
                                     Add to Cart
                             </button>
                             <button 
-                                className="w-30 text-lg font-bold px-2 h-10 rounded-xl bg-secondary hover:bg-secondary/70 text-acsent cursor-pointer">
+                                className="bg-acsent hover:bg-acsent/80 text-white px-8 py-3 rounded-xl font-semibold text-lg shadow-md"
+                                onClick={()=>{if(qty>=1){
+                                    navigate('/checkout',{
+                                        state:{
+                                            cart:[{
+                                                productId:product.productId,
+                                                name:product.name, 
+                                                labeledPrice:product.labeledPrice,
+                                                normalPrice:product.normalPrice,
+                                                image:product.images[0],
+                                                quantity:qty
+                                            }]
+                                        }
+                                    })
+                                }}}
+                            >
                                     Buy Now
                             </button>
                         </div>

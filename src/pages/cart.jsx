@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { Addcart, DeleteCart, GetCart, GetTotal } from "../utils/cart";
 import { BiTrash } from "react-icons/bi";
-import { FiMinus } from "react-icons/fi";
+import { useNavigate } from "react-router-dom";
 
 const Cart =()=>{
     const [cart,SetCart]=useState(GetCart());
+    const navigate= useNavigate();
 
     const handleqty=(productId,quantity)=>{
         const product=cart.find((product)=>{
@@ -35,6 +36,7 @@ const Cart =()=>{
         ):(
         <div className="flex px-40 py-10 bg-primary justify-center ">
             <div className="w-2/3 h-screen flex flex-col py-10">
+                <h1 className="text-3xl font-bold text-acsent ml-3 mb-4">Your Shopping Cart</h1>
                 {cart.map(
                     (product)=>{
                         return(
@@ -106,7 +108,12 @@ const Cart =()=>{
                         </div>
                         <div className="flex justify-center mt-10">
                             <button
-                                className="w-30 text-lg font-bold px-2 h-10 rounded-xl bg-secondary hover:bg-secondary/70 text-acsent cursor-pointer"
+                                className="bg-acsent hover:bg-acsent/80 text-white px-8 py-3 rounded-xl font-semibold text-lg shadow-md"
+                                onClick={()=>navigate('/checkout',{
+                                    state: {
+                                        cart:cart
+                                    }
+                                })}
                             >Checkout</button>
                         </div>
                     </div>
