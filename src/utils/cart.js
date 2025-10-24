@@ -1,8 +1,10 @@
 export const GetCart =()=>{
-    let cart= JSON.parse(localStorage.getItem("cart"));
+    let cart= localStorage.getItem("cart");
     if(cart===null){
         cart = [];
         localStorage.setItem("cart",JSON.stringify(cart));
+    }else{
+        cart=JSON.parse(cart);
     }
     return cart
 }
@@ -40,6 +42,19 @@ export const DeleteCart =(productId)=>{
     })
 
     localStorage.setItem("cart",JSON.stringify(updateCart));
+}
+
+export const GetTotal =()=>{
+    let cart = GetCart();
+    let Subtotal =0;
+    let Total=0;
+
+    for(let i=0;i<cart.length;i++){
+        Subtotal+=(cart[i].labeledPrice*cart[i].quantity);
+        Total+=(cart[i].normalPrice*cart[i].quantity);
+    }
+    let Discount=(Subtotal-Total);
+    return {Subtotal,Total,Discount};
 }
 
 

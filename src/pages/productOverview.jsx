@@ -2,15 +2,14 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import ImageSlider from "../components/imageSlider";
-import { Addcart, GetCart } from "../utils/cart";
+import { Addcart} from "../utils/cart";
 
 const ProductOverview =()=>{
     const {productId}=useParams();
     const [product,setProduct]=useState(null);
     const [status,setStatus]=useState('loading')// success,loading,error
-    const navigate= useNavigate();
 
     useEffect(
         ()=>{
@@ -81,7 +80,6 @@ const ProductOverview =()=>{
                                 className="w-30 text-lg font-bold px-2 h-10 rounded-xl bg-secondary hover:bg-secondary/70 text-acsent cursor-pointer"
                                  onClick={()=>{
                                     Addcart(product, 1);
-                                    navigate('/cart')
                                 }}
                             >
                                     Add to Cart

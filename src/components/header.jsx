@@ -1,3 +1,4 @@
+import { BsCart } from "react-icons/bs";
 import { Link } from "react-router-dom";
 
 const Header =()=>{
@@ -19,7 +20,11 @@ const Header =()=>{
                 <Link to="/contact" className="text-xl font-semibold">Contact</Link>
 
             </div>
-            <div className="flex w-[100px] bg-red-600 "></div>
+            <div className="flex w-[200px] ">
+                <Link to='/cart' className="flex justify-center items-center">
+                    <BsCart fill="#821742" className="w-7 h-7"/>
+                </Link>
+            </div>
         </header>
     )
 };
