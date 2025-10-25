@@ -21,7 +21,12 @@ const AdminProducts=()=>{
                 })
                 .then((res)=>{
                     console.log(res.data);
-                    setproducts(res.data);
+                    const sortedProducts = res.data.sort((a, b) => {
+                        if (a.productId < b.productId) return -1;
+                        if (a.productId > b.productId) return 1;
+                        return 0;
+                    });
+                    setproducts(sortedProducts);
                     setIsloading(false);
                 })
             }
@@ -46,40 +51,44 @@ const AdminProducts=()=>{
             })
     }
     return(
-        <div className="w-full h-full max-h-full overflow-y-scroll relative">
-            <Link to="/admin/addproducts" className="absolute top-0 right-6 text-md border border-white w-35 h-10 py-2 font-bold bg-green-900 text-white rounded-lg text-center cursor-pointer">+Add Product</Link>
+        <div className="w-full h-full max-h-full overflow-y-scroll relative p-6 bg-gray-50">
+            <Link to="/admin/addproducts" className="mt-3 absolute top-0 right-6 bg-acsent hover:bg-acsent/80 text-white px-8 py-3 rounded-xl font-semibold text-lg shadow-md cursor-pointer">+Add Product</Link>
             {!isLoading ?
-                <table className="w-full text-center mt-12">
-                    <thead>
+                <table className="w-full text-center mt-12  min-w-[800px] ">
+                    <thead className="bg-acsent text-white uppercase text-sm">
                         <tr>
-                            <th>productId</th>
-                            <th>product Name</th>
-                            <th>product Image</th>
-                            <th>Labelled Price</th>
-                            <th>price</th>
-                            <th>Stock</th>
-                            <th>Actions</th>
+                            <th className="py-3 px-2">productId</th>
+                            <th className="py-3 px-2">product Name</th>
+                            <th className="py-3 px-2">product Image</th>
+                            <th className="py-3 px-2">Labelled Price</th>
+                            <th className="py-3 px-2">price</th>
+                            <th className="py-3 px-2">Stock</th>
+                            <th className="py-3 px-2">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         {products.map((product)=>{
                             return(
-                                <tr key={product.productId}> 
-                                    <th>{product.productId}</th>
-                                    <th>{product.name}</th>
-                                    <th><img src={product.images[0]} className="w-[40px] h-[40px] "/></th>
-                                    <th>{product.labeledPrice}</th>
-                                    <th>{product.normalPrice}</th>
-                                    <th>{product.stock}</th>
-                                    <th>
+                                <tr key={product.productId}
+                                    className="border-b border-acsent hover:bg-secondary transition-colors duration-200"
+                                > 
+                                    <th className="py-3 px-2">{product.productId}</th>
+                                    <th className="py-3 px-2">{product.name}</th>
+                                    <th className="py-3 px-2 flex justify-center"><img src={product.images[0]} className="w-[40px] h-[40px] object-cover rounded-md shadow-sm"/></th>
+                                    <th className="py-3 px-2">{product.labeledPrice}</th>
+                                    <th className="py-3 px-2 font-semibold text-red-600">{product.normalPrice}</th>
+                                    <th className="py-3 px-2">{product.stock}</th>
+                                    <th className="py-3 px-2">
                                         <div className="flex justify-center items-center gap-5 cursor-pointer">
-                                            <FaTrash color="red"
+                                            <FaTrash color="red" 
+                                                className="hover:scale-120 transition-transform"
                                                 onClick={()=>{
                                                     handleDeleteproduct(product.productId)
                                                     setIsloading(true)
                                                 }}
                                             />
                                             <FaEdit color="blue"
+                                                className="hover:scale-120 transition-transform"
                                                 onClick={()=>{
                                                     navigate('/admin/editproducts',{
                                                         state:product

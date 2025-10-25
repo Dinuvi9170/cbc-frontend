@@ -11,25 +11,33 @@ import Signup from './pages/signup'
 import ProductOverview from './pages/productOverview'
 import Cart from './pages/cart'
 import Checkout from './pages/checkout'
+import MainLayout from './components/layout/mainlayout'
+import AdminLayout from './components/layout/adminlayout'
+import RootLayout from './components/layout/rootlayout'
 
 function App() {
   
   return (
     <BrowserRouter>
       <Toaster position="top-right"/>
-      <Header/>
       <div>
-        <Routes path='/*'>
-          <Route path='/' element={<Home/>}/>
-          <Route path='/products' element={<Products/>}/>
-          <Route path='/login' element={<Login/>}/>
-          <Route path='/register' element={<Signup/>}/>
-          <Route path='/testing' element={<TestPage/>}/>
-          <Route path='/admin/*' element={<Admin/>}/>
-          <Route path='/products/:productId' element={<ProductOverview/>}/>
-          <Route path='/cart' element={<Cart/>}/>
-          <Route path='/checkout' element={<Checkout/>}/>
-          <Route path='/*' element={<h1>404 Not Found</h1>}/>
+        <Routes>
+          <Route element={<RootLayout/>}>
+            <Route element={<MainLayout/>}>
+              <Route path='/' element={<Home/>}/>
+              <Route path='/products' element={<Products/>}/>
+              <Route path='/login' element={<Login/>}/>
+              <Route path='/register' element={<Signup/>}/>
+              <Route path='/testing' element={<TestPage/>}/>
+              <Route path='/products/:productId' element={<ProductOverview/>}/>
+              <Route path='/cart' element={<Cart/>}/>
+              <Route path='/checkout' element={<Checkout/>}/>
+            </Route>
+            <Route element={<AdminLayout/>}>
+              <Route path='/admin/*' element={<Admin/>}/>
+            </Route>
+            <Route path='*' element={<h1>404 Not Found</h1>}/>
+          </Route>
         </Routes>
       </div>
     </BrowserRouter>

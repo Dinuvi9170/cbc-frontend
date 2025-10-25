@@ -5,14 +5,25 @@ import EditProducts from "./admin/editproducts";
 
 const Admin =()=>{
     return(
-        <div className="flex w-full h-screen">
-            <div className="h-full w-[300px] flex flex-col bg-blue-600">
-                <Link to="/admin/products">Products</Link>
-                <Link to="/admin/users">Users</Link>
-                <Link to="/admin/orders">Orders</Link>
-                <Link to="/admin/reviews">Reviews</Link>
+        <div className="flex w-full h-screen ">
+            <div className="h-full w-[300px] flex flex-col bg-primary px-5 py-5 shadow-lg">
+                <h1 className="text-2xl font-bold text-acsent mb-8 text-center">Admin Panel</h1>
+                <nav className="flex flex-col gap-4 justify-center items-center">
+                    <Link to="/admin/products"
+                        className="text-acsent py-3 px-4 rounded-lg hover:bg-secondary transition-all duration-200 font-semibold"
+                    >Products</Link>
+                    <Link to="/admin/users"
+                        className="text-acsent py-3 px-4 rounded-lg hover:bg-secondary transition-all duration-200 font-semibold"
+                    >Users</Link>
+                    <Link to="/admin/orders"
+                        className="text-acsent py-3 px-4 rounded-lg hover:bg-secondary transition-all duration-200 font-semibold"
+                    >Orders</Link>
+                    <Link to="/admin/reviews"
+                        className="text-acsent py-3 px-4 rounded-lg hover:bg-secondary transition-all duration-200 font-semibold"
+                    >Reviews</Link>
+                </nav>
             </div>
-            <div className="h-full w-[calc(100%-300px)] bg-amber-50 py-5">
+            <div className="h-full w-[calc(100%-300px)] py-5">
                 <Routes>
                     <Route path='products' element={<AdminProducts/>}/>
                     <Route path='users' element={<h1>Users</h1>}/>

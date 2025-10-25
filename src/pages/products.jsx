@@ -25,7 +25,7 @@ const Products= ()=>{
     )
     return(
         (!isLoading)?
-        <div className='px-25 py-10 bg-primary w-full h-screen'>
+        <div className='px-25 py-10 bg-primary w-full  h-full '>
             <div className='grid grid-cols-4 w-full h-full gap-y-4 justify-center'>
                 { products.map((product)=>{
                     return(
