@@ -9,6 +9,7 @@ const Checkout = () => {
     const [cart, setCart] = useState(location.state.cart);
     const [address,SetAddress]=useState('');
     const [phone,SetPhone]=useState('');
+    const [name,Setname]=useState('');
     const [user, setUser] = useState(null);
     
     useEffect(() => {
@@ -17,6 +18,7 @@ const Checkout = () => {
         try {
             const decoded = jwtDecode(token);
             setUser(decoded);
+            Setname(decoded.firstName + " " + decoded.lastName);
         } catch (err) {
             console.error("Token decode failed:", err);
         }
@@ -65,7 +67,7 @@ const Checkout = () => {
         }
 
         const orderInformation={
-            name: `${user.firstName} ${user.lastName}`,
+            name:name,
             email: user.email,
             address,
             phone,
@@ -102,8 +104,8 @@ const Checkout = () => {
                         <label className="block font-semibold">Name</label>
                         <input
                             type="text"
-                            value={`${user.firstName} ${user.lastName}`}
-                            disabled
+                            value={name}
+                            onChange={(e) => Setname(e.target.value)}
                             className="w-full border p-2 rounded-md bg-gray-100"
                         />
                     </div>
@@ -203,7 +205,7 @@ const Checkout = () => {
 
                     <div className="flex justify-center mt-6">
                     <button
-                        className="bg-acsent hover:bg-acsent/80 text-white px-8 py-3 rounded-xl font-semibold text-lg shadow-md"
+                        className="bg-acsent hover:bg-acsent/80 text-white px-8 py-3 rounded-xl font-semibold text-lg shadow-md cursor-pointer"
                         onClick={handlePlaceorder} 
                     >
                         Place Order

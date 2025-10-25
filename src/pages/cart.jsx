@@ -108,7 +108,7 @@ const Cart =()=>{
                         </div>
                         <div className="flex justify-center mt-10">
                             <button
-                                className="bg-acsent hover:bg-acsent/80 text-white px-8 py-3 rounded-xl font-semibold text-lg shadow-md"
+                                className="bg-acsent hover:bg-acsent/80 text-white px-8 py-3 rounded-xl font-semibold text-lg shadow-md cursor-pointer"
                                 onClick={()=>navigate('/checkout',{
                                     state: {
                                         cart:cart
