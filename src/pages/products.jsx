@@ -12,8 +12,8 @@ const Products= ()=>{
             if(isLoading===true){
                 const token=localStorage.getItem('token');
                 axios.get(import.meta.env.VITE_BACKEND_URL+'/api/products/',{
-                    Headers:
-                    {"Authentication":"Bearer "+token}
+                    headers:
+                    {"Authorization":"Bearer "+token}
                 })
                 .then((res)=>{
                     console.log(res.data);
