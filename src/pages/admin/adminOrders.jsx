@@ -1,13 +1,13 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import OrderProducts from "../../components/orderProducts";
+// import OrderProducts from "../../components/orderProducts";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 const AdminOrder =()=>{
     const [order,setOrder]=useState([])
     const [isloading,setIsLoading]=useState(true);
-    const [selected,setSelected]=useState(null)
+    // const [selected,setSelected]=useState(null)
 
     useEffect(()=>{
         if(isloading){
@@ -51,26 +51,26 @@ const AdminOrder =()=>{
                         <th className="p-2">Phone</th>
                         <th className="p-2">Address</th>
                         <th className="p-2">Total</th>
-                        <th className="p-2">Status</th>
+                        {/* <th className="p-2">Status</th> */}
                         <th className="p-2">Date</th>
                         <th className="p-2">Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {order.map((el,index)=>{
+                    {order.map((el)=>{
                         return(
                             <React.Fragment key={el.orderId}>
                             <tr key={el.orderId}
                                 className="border-b border-acsent hover:bg-secondary transition text-md"
                             >
-                                <th className="p-4">{el.orderId}</th>
-                                <th className="p-4">{el.name}</th>
-                                <th className="p-4">{el.email}</th>
-                                <th className="p-4">{el.phone}</th>
-                                <th className="p-4 max-w-[210px] break-words whitespace-normal ">{el.address}
+                                <th className="p-2">{el.orderId}</th>
+                                <th className="p-2">{el.name}</th>
+                                <th className="p-2">{el.email}</th>
+                                <th className="p-2">{el.phone}</th>
+                                <th className="p-2 max-w-[210px] break-words whitespace-normal ">{el.address}
                                 </th>
-                                <th className="p-4">Rs. {el.total.toFixed(2)}</th>
-                                <th>
+                                <th className="p-2">Rs. {el.total.toFixed(2)}</th>
+                                {/* <th className="p-2">
                                     <select
                                         value={el.status} 
                                         className="hover:cursor-pointer hover:bg-white border rounded py-2">
@@ -79,22 +79,22 @@ const AdminOrder =()=>{
                                         <option value="completed">Completed</option>
                                         <option value="completed">Cancelled</option>
                                     </select>
-                                </th>
+                                </th> */}
                                 <th>{new Date(el.date).toLocaleString()}</th>
                                 <th>
                                     <button 
-                                        onClick={()=>setSelected(selected===index?null:index)}
+                                        onClick={()=>window.open(`/orders/${el.orderId}`, '_blank')}
                                         className="bg-acsent hover:bg-acsent/80 text-white px-1 py-1 rounded-md font-semibold text-md shadow-md cursor-pointer">
-                                            {selected===index?"Hide":"View"}</button> 
+                                            View</button> 
                                 </th>
                             </tr>
-                            {selected ===index &&(
+                            {/* {selected ===index &&(
                                 <tr>
                                     <td colSpan='6'>
                                         <OrderProducts products={el.products}/>
                                     </td>
                                 </tr>
-                            )}
+                            )} */}
                             </React.Fragment>   
                         )
                     })}

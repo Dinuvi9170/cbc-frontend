@@ -41,6 +41,7 @@ const Admin =()=>{
                     <Route path='reviews' element={<h1>Reviews</h1>}/>
                     <Route path='addproducts' element={<Addproducts/>}/>
                     <Route path='editproducts' element={<EditProducts/>}/>
+                    
                 </Routes>
             </div>
         </div>

@@ -14,7 +14,7 @@ import Checkout from './pages/checkout'
 import MainLayout from './components/layout/mainlayout'
 import AdminLayout from './components/layout/adminlayout'
 import RootLayout from './components/layout/rootlayout'
-
+import OrderProducts from './components/orderProducts'
 function App() {
   
   return (
@@ -35,6 +35,7 @@ function App() {
             </Route>
             <Route element={<AdminLayout/>}>
               <Route path='/admin/*' element={<Admin/>}/>
+              <Route path='/orders/:orderId' element={<OrderProducts/>}/>
             </Route>
             <Route path='*' element={<h1>404 Not Found</h1>}/>
           </Route>

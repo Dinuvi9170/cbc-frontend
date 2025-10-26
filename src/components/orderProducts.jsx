@@ -1,13 +1,54 @@
-const OrderProducts=(props)=>{
-    const products= props.products;
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { useParams } from "react-router-dom";
+import toast from "react-hot-toast";
+
+const OrderProducts=()=>{
+    const {orderId}=useParams()
+    const [order,setorder]= useState([]);
+    const [loading,setLoading]=useState(true);
+    console.log( order);
+
+    useEffect(()=>{
+      if(loading){
+        const token=localStorage.getItem("token");
+        if(!token){
+        toast.error("Please login ")
+          return;
+        }
+        try{
+          axios.get(import.meta.env.VITE_BACKEND_URL+`/api/orders/${orderId}`,{
+            headers:{
+              "Authorization":"Bearer "+token
+            }
+          }).then((res)=>{
+              console.log(res.data);
+              setorder(res.data)
+              setLoading(false)
+            })
+        }catch(error){
+          console.log(error)
+        }
+      }
+    },[loading])
   
     return(
-      <div className="bg-gray-50">
-        <div className="p-4">
-          <h3 className="font-bold mb-2 text-left text-red-800">
-            Products in this Order:
-          </h3>
-          <table className="w-full text-sm border border-acsent text-center">
+      <div className="px-10 py-10 flex justify-center">
+        <div className="p-10 py-4 flex justify-center border items-center w-[1200px] flex-col">
+          <div className="font-bold mb-2 flex flex-col items-center">
+            <span className="text-xl text-red-800 mb-10">Order Summary</span>
+            <span className="text-md">OrderId: {orderId}</span> 
+          </div>
+          <div className="p-10 py-4 w-[1200px] flex justify-evenly items-center ">
+            <div className="flex flex-col justify-center items-center">
+              <span>Customer Name: {order.name}</span>
+            </div> 
+            <div className="flex flex-col justify-center items-center">
+              <span>Date: {new Date(order.date).toLocaleDateString()}</span>
+            </div> 
+
+          </div>
+          <table className="w-[1100px] p-10 py-4 text-sm border border-acsent text-center">
             <thead className="bg-gray-200">
               <tr>
                 <th className="p-2">Product ID</th>
@@ -17,7 +58,7 @@ const OrderProducts=(props)=>{
                 <th className="p-2 flex items-center">Image</th>
               </tr>
               </thead>
-                <tbody>
+                {/* <tbody>
                   {products.map((p) => (
                     <tr key={p.productInfo.productId}>
                       <td className="p-2">{p.productInfo.productId}</td>
@@ -35,8 +76,9 @@ const OrderProducts=(props)=>{
                       </td>
                     </tr>
                   ))}
-                </tbody>          
+                </tbody>           */}
           </table>
+          <button onClick={()=>window.print()}>print</button>
         </div>
       </div>                    
     )
