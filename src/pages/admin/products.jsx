@@ -51,9 +51,9 @@ const AdminProducts=()=>{
             })
     }
     return(
-        <div className="w-full h-full max-h-full overflow-y-scroll relative p-6 bg-gray-50">
-            <Link to="/admin/addproducts" className="mt-3 absolute top-0 right-6 bg-acsent hover:bg-acsent/80 text-white px-8 py-3 rounded-xl font-semibold text-lg shadow-md cursor-pointer">+Add Product</Link>
-            {!isLoading ?
+        (!isLoading) ?
+            (<div className="w-full h-full max-h-full overflow-y-scroll relative p-6 bg-gray-50">
+                <Link to="/admin/addproducts" className="mt-3 absolute top-0 right-6 bg-acsent hover:bg-acsent/80 text-white px-8 py-3 rounded-xl font-semibold text-lg shadow-md cursor-pointer">+Add Product</Link>
                 <table className="w-full text-center mt-12  min-w-[800px] ">
                     <thead className="bg-acsent text-white uppercase text-sm">
                         <tr>
@@ -103,13 +103,14 @@ const AdminProducts=()=>{
                         }
                     </tbody>
                 </table>
-                :
-                <div className="w-full h-full flex flex-col justify-center items-center">
-                  <AiOutlineLoading3Quarters color="blue" className="w-6 h-6 animate-spin"/> 
-                  <h1 className="animate-pulse text--lg font-semibold text-blue-700">Loading...</h1>
-                </div>
-            }
-        </div>
+            </div>)
+            :(
+            <div className="w-full h-full flex flex-col justify-center items-center">
+                <AiOutlineLoading3Quarters color="blue" className="w-6 h-6 animate-spin"/> 
+                 <h1 className="animate-pulse text--lg font-semibold text-blue-700">Loading...</h1>
+            </div>)
+        
+        
     )
 }
 

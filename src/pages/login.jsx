@@ -32,8 +32,13 @@ const Login =()=>{
         <div className="w-full h-screen bg-[url('/images/cosmetic-oil.jpg')] bg-center bg-cover flex justify-evenly items-center">
             <div className="w-1/2 h-full"></div>
             <div className="w-1/2 h-full flex justify-center items-center">
-                <div className="flex justify-center items-center w-[500px] h-[600px] bg-white-400 shadow-xl rounded-lg backdrop-blur-md">
-                    <form className="flex flex-col gap-4 text-lg" >
+                <div className="flex justify-center items-center w-[500px] h-[600px] bg-white-400 shadow-xl rounded-lg backdrop-blur-md relative">
+                    <button 
+                    onClick={()=>navigate('/register')}
+                    className=" absolute top-10 right-10 bg-acsent hover:bg-acsent/80 text-white px-4 py-2 rounded-xl font-semibold text-lg shadow-md cursor-pointer">
+                    Register
+                    </button>
+                    <form className="flex flex-col gap-4 justify-center items-center text-lg" >
                         <label className="text-center font-semibold">Email:</label>
                         <input
                             type="email"
@@ -56,7 +61,7 @@ const Login =()=>{
                             onChange={(e)=>{setpassword(e.target.value)}}
                         />
                         <button 
-                            className="shadow-md font-bold bg-secondary hover:bg-secondary/80 text-acsent mt-5 py-1 rounded-lg w-30 text-center mx-20 cursor-pointer"
+                            className="w-1/2 bg-acsent hover:bg-acsent/80 text-white px-4 py-2 rounded-xl font-semibold text-lg shadow-md cursor-pointer"
                             onClick={handlelogin} type="button"
                         >
                             Login

@@ -57,18 +57,18 @@ const ProductOverview =()=>{
     return(
         <>
             {status=="loading"?(
-                <div className="w-full h-full flex flex-col bg-primary justify-center items-center">
+                <div className="w-full h-screen flex flex-col bg-primary justify-center items-center">
                     <AiOutlineLoading3Quarters color="blue" className="w-6 h-6 animate-spin"/> 
                     <h1 className="animate-pulse text-lg font-semibold text-blue-700">Loading...</h1>
                 </div>
             ):
             !product?(
-                <div className="w-full h-full flex flex-col bg-primary pt-20 items-center"> 
+                <div className="w-full h-screen flex flex-col bg-primary pt-20 items-center"> 
                     <h1 className="text-2xl font-semibold text-blue-700">Product details not found.</h1>
                 </div>
             ):
             (
-                <div className="flex w-full h-full bg-primary px-50 py-10 ">
+                <div className="flex w-full h-screen bg-primary px-50 py-10 ">
                     <div className="flex justify-center items-center w-1/2 h-full bg-white">
                         <ImageSlider images={product.images}/>
                     </div>

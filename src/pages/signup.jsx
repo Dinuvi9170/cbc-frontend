@@ -33,7 +33,7 @@ const Signup = () => {
       <div className="w-1/2 h-full"></div>
       <div className="w-1/2 h-full flex justify-center items-center">
         <div className="flex justify-center items-center w-[500px] h-[650px] bg-white-400 shadow-xl rounded-lg backdrop-blur-md">
-          <form className="flex flex-col gap-4 text-lg">
+          <form className="flex flex-col gap-4 justify-center items-center text-lg">
             <label className="text-center font-semibold">First Name:</label>
             <input
               type="text"
@@ -75,7 +75,7 @@ const Signup = () => {
             />
 
             <button
-              className="font-bold bg-secondary text-acsent mt-5 py-1 hover:bg-secondary/80 rounded-lg w-30 text-center mx-20 cursor-pointer"
+              className="w-1/2 bg-acsent hover:bg-acsent/80 text-white px-4 py-2 rounded-xl font-semibold text-lg shadow-md cursor-pointer"
               onClick={handleSignup}
               type="button"
             >

@@ -1,11 +1,12 @@
 import axios from "axios";
 import {  useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
 
 const Checkout = () => {
     const location=useLocation();
+    const navigate=useNavigate();
     const [cart, setCart] = useState(location.state.cart);
     const [address,SetAddress]=useState('');
     const [phone,SetPhone]=useState('');
@@ -87,6 +88,8 @@ const Checkout = () => {
             console.log(res.data)
             setCart([]);
             localStorage.removeItem("cart");
+            navigate('/products')
+
         }catch(err){
             console.log(err);
             toast.error('error in placing order')

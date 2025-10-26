@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Header =()=>{
     return(
-        <header className="w-full h-[80px] shadow-2xl flex flex-between">
+        <header className="w-full h-[80px] shadow-2xl flex bg-white flex-between">
             <Link to="/">
                 <div className="relative px-8 py-2 flex justify-center">
                     <img src={"/beautylogoremovebgpreview.png"} className="absolutew-[50px] h-[50px] object-cover "/>
