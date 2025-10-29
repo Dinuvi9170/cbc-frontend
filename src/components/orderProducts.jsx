@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import toast from "react-hot-toast";
 
 const OrderProducts=()=>{
     const {orderId}=useParams()
     const [order,setorder]= useState([]);
     const [loading,setLoading]=useState(true);
-    console.log( order);
+    const navigate=useNavigate();
 
     useEffect(()=>{
       if(loading){
@@ -31,26 +31,26 @@ const OrderProducts=()=>{
         }
       }
     },[loading])
-  
+   
     return(
       <div className="px-10 py-10 flex justify-center">
-        <div className="p-10 py-4 flex justify-center border items-center w-[1200px] flex-col">
+        <div className="p-10 py-4 flex justify-center items-center w-[1200px] flex-col">
           <div className="font-bold mb-2 flex flex-col items-center">
             <span className="text-xl text-red-800 mb-10">Order Summary</span>
-            <span className="text-md">OrderId: {orderId}</span> 
+            <span className="text-md">OrderId: {orderId}</span>
           </div>
-          <div className="p-10 py-4 w-[1200px] flex justify-evenly items-center ">
-            <div className="flex flex-col justify-center items-center">
-              <span>Customer Name: {order.name}</span>
-            </div> 
-            <div className="flex flex-col justify-center items-center">
+          <div className="px-40 py-4 w-[1200px] text-md flex justify-start items-center ">
+            <div className="flex flex-col justify-center">
               <span>Date: {new Date(order.date).toLocaleDateString()}</span>
+              <span>Customer Name: {order.name}</span>   
+              <span className="text-md">Email: {order.email}</span> 
+              <span className="text-md">Phone: {order.phone}</span> 
+              <span className="text-md">Address: {order.address}</span>
             </div> 
-
           </div>
           <table className="w-[1100px] p-10 py-4 text-sm border border-acsent text-center">
-            <thead className="bg-gray-200">
-              <tr>
+            <thead>
+              <tr  className="bg-acsent text-white">
                 <th className="p-2">Product ID</th>
                 <th className="p-2">Name</th>
                 <th className="p-2">Quantity</th>
@@ -58,9 +58,9 @@ const OrderProducts=()=>{
                 <th className="p-2 flex items-center">Image</th>
               </tr>
               </thead>
-                {/* <tbody>
-                  {products.map((p) => (
-                    <tr key={p.productInfo.productId}>
+                <tbody>
+                  {order.products?.map((p,index) => (
+                    <tr key={index}>
                       <td className="p-2">{p.productInfo.productId}</td>
                       <td className="p-2">{p.productInfo.name}</td>
                       <td className="p-2">{p.quantity}</td>
@@ -69,16 +69,39 @@ const OrderProducts=()=>{
                       </td>
                       <td className="p-2">
                         <img
-                          src={p.productInfo.images[0]}
-                          alt={p.productInfo.name}
+                          src={p.productInfo?.images[0]}
+                          alt={p.productInfo?.name}
                           className="w-12 h-12 object-cover rounded"
                         />
                       </td>
                     </tr>
                   ))}
-                </tbody>           */}
+                </tbody>          
           </table>
-          <button onClick={()=>window.print()}>print</button>
+          <div className="p-10 py-4 w-[750px] text-md flex justify-end items-center">
+            <div className="flex flex-col justify-end">
+              <div className="flex text-md">
+                <span>Subtotal: </span>
+                <span>Rs. {Number(order.labelTotal).toFixed(2)}</span>
+              </div>
+              
+              <div className="flex text-lg">
+                <span className="font-bold">Total: </span>
+                <span className="ml-6 text-red-700 font-bold">Rs. {Number(order.total).toFixed(2)}</span>
+              </div>
+            </div>
+          </div>
+          <div className="flex gap-4">
+            <button onClick={()=>window.print()}
+              className="bg-acsent hover:bg-acsent/80 text-white px-4 py-2 rounded-xl font-semibold text-lg shadow-md cursor-pointer"
+              >print</button>
+            <button onClick={()=>{
+              window.close();
+              navigate('/admin/orders')
+            }}
+              className="bg-acsent hover:bg-acsent/80 text-white px-4 py-2 rounded-xl font-semibold text-lg shadow-md cursor-pointer"
+              >Close</button>
+          </div>
         </div>
       </div>                    
     )
