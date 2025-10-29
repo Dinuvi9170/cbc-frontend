@@ -68,11 +68,11 @@ const ProductOverview =()=>{
                 </div>
             ):
             (
-                <div className="flex w-full h-screen bg-primary px-50 py-10 ">
-                    <div className="flex justify-center items-center w-1/2 h-full bg-white">
+                <div className="flex w-full flex-col md:flex-row h-screen bg-primary px-6 py-10 md:px-50 md:py-10 ">
+                    <div className="flex md:flex-col justify-center items-center md:w-1/2 h-full bg-white">
                         <ImageSlider images={product.images}/>
                     </div>
-                    <div className="w-1/2 h-full bg-white flex flex-col px-10 pt-20">
+                    <div className="md:w-1/2 h-full bg-white flex flex-col px-10 pt-20">
                         <div className="text-center text-3xl font-semibold">{product.name}</div>
                         <div className="flex justify-center">
                             {product.alternativeNames?.map(
@@ -113,13 +113,13 @@ const ProductOverview =()=>{
                         </div>
                         <div className="flex justify-center gap-4 mt-10">
                             <button 
-                                className="bg-acsent hover:bg-acsent/80 text-white px-8 py-3 rounded-xl font-semibold text-lg shadow-md cursor-pointer"
+                                className="bg-acsent hover:bg-acsent/80 text-white px-2 md:px-8 md:py-3 rounded-xl font-semibold text-md md:text-lg shadow-md cursor-pointer"
                                  onClick={handleAddcart}
                             >
                                     Add to Cart
                             </button>
                             <button 
-                                className="bg-acsent hover:bg-acsent/80 text-white px-8 py-3 rounded-xl font-semibold text-lg shadow-md cursor-pointer"
+                                className="bg-acsent hover:bg-acsent/80 text-white px-2 md:px-8 py-3 rounded-xl font-semibold text-md md:text-lg shadow-md cursor-pointer"
                                 onClick={()=>{if(qty>=1){
                                     navigate('/checkout',{
                                         state:{

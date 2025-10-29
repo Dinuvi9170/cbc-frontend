@@ -1,13 +1,11 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
-// import OrderProducts from "../../components/orderProducts";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 const AdminOrder =()=>{
     const [order,setOrder]=useState([])
     const [isloading,setIsLoading]=useState(true);
-    // const [selected,setSelected]=useState(null)
 
     useEffect(()=>{
         if(isloading){
@@ -31,6 +29,28 @@ const AdminOrder =()=>{
             }
         }
     },[isloading])
+
+    const handleStatus= async (orderId,newStatus)=>{
+        const token= localStorage.getItem("token")
+            if(!token){
+                toast.error("Please login ")
+                return;
+            }
+            try{
+                const res= await axios.put(import.meta.env.VITE_BACKEND_URL+`/api/orders/${orderId}`,
+                    {status:newStatus},{
+                    headers:{
+                        "Authorization":"Bearer "+token
+                    }
+                })
+                toast.success("Order status updated successfully");
+                setIsLoading(true);
+                console.log(res.data)
+
+            }catch(error){
+                console.log(error);
+            }
+    }
     return(
         (isloading)?(
             <div className="w-full h-full flex flex-col justify-center items-center">
@@ -51,7 +71,7 @@ const AdminOrder =()=>{
                         <th className="p-2">Phone</th>
                         <th className="p-2">Address</th>
                         <th className="p-2">Total</th>
-                        {/* <th className="p-2">Status</th> */}
+                        <th className="p-2">Status</th>
                         <th className="p-2">Date</th>
                         <th className="p-2">Action</th>
                     </tr>
@@ -70,16 +90,17 @@ const AdminOrder =()=>{
                                 <th className="p-2 max-w-[210px] break-words whitespace-normal ">{el.address}
                                 </th>
                                 <th className="p-2">Rs. {el.total.toFixed(2)}</th>
-                                {/* <th className="p-2">
+                                <th className="p-2">
                                     <select
                                         value={el.status} 
+                                        onChange={(e)=>handleStatus(el.orderId,e.target.value)}
                                         className="hover:cursor-pointer hover:bg-white border rounded py-2">
                                         <option value="pending">Pending</option>
                                         <option value="processing">Processing</option>
                                         <option value="completed">Completed</option>
                                         <option value="completed">Cancelled</option>
                                     </select>
-                                </th> */}
+                                </th>
                                 <th>{new Date(el.date).toLocaleString()}</th>
                                 <th>
                                     <button 
@@ -88,13 +109,6 @@ const AdminOrder =()=>{
                                             View</button> 
                                 </th>
                             </tr>
-                            {/* {selected ===index &&(
-                                <tr>
-                                    <td colSpan='6'>
-                                        <OrderProducts products={el.products}/>
-                                    </td>
-                                </tr>
-                            )} */}
                             </React.Fragment>   
                         )
                     })}

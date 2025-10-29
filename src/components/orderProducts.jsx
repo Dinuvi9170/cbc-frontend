@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import toast from "react-hot-toast";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 const OrderProducts=()=>{
     const {orderId}=useParams()
@@ -33,13 +34,14 @@ const OrderProducts=()=>{
     },[loading])
    
     return(
-      <div className="px-10 py-10 flex justify-center">
+      (!loading)?
+      (<div className="px-10 py-10 flex justify-center">
         <div className="p-10 py-4 flex justify-center items-center w-[1200px] flex-col">
           <div className="font-bold mb-2 flex flex-col items-center">
             <span className="text-xl text-red-800 mb-10">Order Summary</span>
             <span className="text-md">OrderId: {orderId}</span>
           </div>
-          <div className="px-40 py-4 w-[1200px] text-md flex justify-start items-center ">
+          <div className="px-40 py-4 w-[1200px] text-md flex max-w-[1200px] justify-start items-center ">
             <div className="flex flex-col justify-center">
               <span>Date: {new Date(order.date).toLocaleDateString()}</span>
               <span>Customer Name: {order.name}</span>   
@@ -62,7 +64,7 @@ const OrderProducts=()=>{
                   {order.products?.map((p,index) => (
                     <tr key={index}>
                       <td className="p-2">{p.productInfo.productId}</td>
-                      <td className="p-2">{p.productInfo.name}</td>
+                      <td className="p-2 max-w-[100px] break-words whitespace-normal">{p.productInfo.name}</td>
                       <td className="p-2">{p.quantity}</td>
                       <td className="p-2">
                         Rs. {p.productInfo.normalPrice.toFixed(2)}
@@ -93,17 +95,22 @@ const OrderProducts=()=>{
           </div>
           <div className="flex gap-4">
             <button onClick={()=>window.print()}
-              className="bg-acsent hover:bg-acsent/80 text-white px-4 py-2 rounded-xl font-semibold text-lg shadow-md cursor-pointer"
+              className="bg-acsent hover:bg-acsent/80 text-white px-4 py-2 rounded-xl font-semibold text-lg shadow-md cursor-pointer print:hidden"
               >print</button>
             <button onClick={()=>{
               window.close();
               navigate('/admin/orders')
             }}
-              className="bg-acsent hover:bg-acsent/80 text-white px-4 py-2 rounded-xl font-semibold text-lg shadow-md cursor-pointer"
+              className="bg-acsent hover:bg-acsent/80 text-white px-4 py-2 rounded-xl font-semibold text-lg shadow-md cursor-pointer print:hidden"
               >Close</button>
           </div>
         </div>
-      </div>                    
+      </div>):(
+        <div className="w-full h-screen flex flex-col justify-center items-center">
+          <AiOutlineLoading3Quarters color="blue" className="w-6 h-6 animate-spin"/> 
+          <h1 className="animate-pulse text--lg font-semibold text-blue-700">Loading...</h1>
+        </div>
+      )                
     )
 }
 export default OrderProducts;
