@@ -1,7 +1,7 @@
 import { Routes,Route,BrowserRouter } from 'react-router-dom'
+import { GoogleOAuthProvider } from '@react-oauth/google';
 import './App.css'
 import Home from './pages/home'
-import Header from './components/header'
 import Products from './pages/products'
 import Admin from './pages/admin'
 import TestPage from './pages/testPage'
@@ -15,33 +15,36 @@ import MainLayout from './components/layout/mainlayout'
 import AdminLayout from './components/layout/adminlayout'
 import RootLayout from './components/layout/rootlayout'
 import OrderProducts from './components/orderProducts'
+
 function App() {
   
   return (
-    <BrowserRouter>
-      <Toaster position="top-right"/>
-      <div>
-        <Routes>
-          <Route element={<RootLayout/>}>
-            <Route element={<MainLayout/>}>
-              <Route path='/' element={<Home/>}/>
-              <Route path='/products' element={<Products/>}/>
-              <Route path='/login' element={<Login/>}/>
-              <Route path='/register' element={<Signup/>}/>
-              <Route path='/testing' element={<TestPage/>}/>
-              <Route path='/products/:productId' element={<ProductOverview/>}/>
-              <Route path='/cart' element={<Cart/>}/>
-              <Route path='/checkout' element={<Checkout/>}/>
+    <GoogleOAuthProvider clientId={import.meta.env.VITE_Google_Client}>
+      <BrowserRouter>
+        <Toaster position="top-right"/>
+        <div>
+          <Routes>
+            <Route element={<RootLayout/>}>
+              <Route element={<MainLayout/>}>
+                <Route path='/' element={<Home/>}/>
+                <Route path='/products' element={<Products/>}/>
+                <Route path='/login' element={<Login/>}/>
+                <Route path='/register' element={<Signup/>}/>
+                <Route path='/testing' element={<TestPage/>}/>
+                <Route path='/products/:productId' element={<ProductOverview/>}/>
+                <Route path='/cart' element={<Cart/>}/>
+                <Route path='/checkout' element={<Checkout/>}/>
+              </Route>
+              <Route element={<AdminLayout/>}>
+                <Route path='/admin/*' element={<Admin/>}/>
+                <Route path='/orders/:orderId' element={<OrderProducts/>}/>
+              </Route>
+              <Route path='*' element={<h1>404 Not Found</h1>}/>
             </Route>
-            <Route element={<AdminLayout/>}>
-              <Route path='/admin/*' element={<Admin/>}/>
-              <Route path='/orders/:orderId' element={<OrderProducts/>}/>
-            </Route>
-            <Route path='*' element={<h1>404 Not Found</h1>}/>
-          </Route>
-        </Routes>
-      </div>
-    </BrowserRouter>
+          </Routes>
+        </div>
+      </BrowserRouter>
+    </GoogleOAuthProvider>
   )
 }
 

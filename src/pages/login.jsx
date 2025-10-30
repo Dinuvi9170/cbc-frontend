@@ -2,6 +2,8 @@ import { useState } from "react";
 import axios from "axios";
 import {toast} from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { GrGoogle } from "react-icons/gr";
+import { useGoogleLogin } from '@react-oauth/google';
 
 const Login =()=>{
     const navigate=useNavigate();
@@ -27,6 +29,28 @@ const Login =()=>{
             toast.error(e.response.data.message);
         }
     }
+
+    const LoginwithGoogle= useGoogleLogin({
+         onSuccess: async (response) =>{ 
+            try{
+                const accessToken=response.access_token;
+                const res= await axios.post(import.meta.env.VITE_BACKEND_URL+'/api/users/login/google',{
+                    accessToken:accessToken
+                })
+                toast.success("Login successful")
+                const token=res.data.token;
+                localStorage.getItem("token",token)
+                if(res.data.role=="Admin"){
+                    navigate('/admin/products');
+                }else{
+                    navigate('/');
+                }
+            }catch(error){
+                console.log(error)
+                toast.error("Login failed")
+            }    
+         }
+    })
 
     return(
         <div className="w-full h-screen bg-[url('/images/cosmetic-oil.jpg')] bg-center bg-cover flex justify-evenly items-center">
@@ -65,6 +89,15 @@ const Login =()=>{
                             onClick={handlelogin} type="button"
                         >
                             Login
+                        </button>
+                        <button 
+                            className="w-[250px] bg-acsent hover:bg-acsent/80 text-white px-4 py-2 rounded-xl font-semibold text-lg shadow-md cursor-pointer"
+                            onClick={LoginwithGoogle} type="button"
+                        >
+                            <div className="flex gap-2 items-center justify-center">
+                            <GrGoogle/>
+                            Login with Google
+                            </div>
                         </button>
                     </form>
                 </div>
