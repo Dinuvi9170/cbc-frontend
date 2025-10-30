@@ -30,9 +30,9 @@ const Signup = () => {
 
   return (
     <div className="w-full h-screen bg-[url('/images/cosmetic-oil.jpg')] bg-center bg-cover flex justify-evenly items-center">
-      <div className="w-1/2 h-full"></div>
-      <div className="w-1/2 h-full flex justify-center items-center">
-        <div className="flex justify-center items-center w-[500px] h-[650px] bg-white-400 shadow-xl rounded-lg backdrop-blur-md">
+      <div className="w-1/2 h-full hidden md:block"></div>
+      <div className="md:w-1/2 w-full h-full flex justify-center items-center">
+        <div className="flex justify-center items-center w-[500px] h-[650px] bg-white-400 md:shadow-xl rounded-lg backdrop-blur-md">
           <form className="flex flex-col gap-4 justify-center items-center text-lg">
             <label className="text-center font-semibold">First Name:</label>
             <input

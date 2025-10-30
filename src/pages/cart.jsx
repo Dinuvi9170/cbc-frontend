@@ -34,23 +34,27 @@ const Cart =()=>{
             <h1 className="text-2xl font-semibold text-blue-700">Your cart is empty</h1>
         </div>
         ):(
-        <div className="flex px-40 py-10 bg-primary justify-center ">
-            <div className="w-2/3 h-full flex flex-col py-10">
-                <h1 className="text-3xl font-bold text-acsent ml-3 mb-4">Your Shopping Cart</h1>
+        <div className="md:flex px-1 py-2 md:px-40 md:py-10 bg-primary justify-center ">
+            <h1 className="md:hidden text-3xl font-bold text-acsent ml-3 mb-4">Your Shopping Cart</h1>
+            <div className="md:w-2/3 w-full h-full flex flex-col md:py-10">
+                <h1 className="hidden md:block text-3xl font-bold text-acsent ml-3 mb-4">Your Shopping Cart</h1>
                 {cart.map(
                     (product)=>{
                         return(
-                            <div key={product.productId} className="flex justify-center items-center">
-                                <div className="w-[600px] h-[100px] m-1 items-center bg-white rounded-2xl shadow-2xl flex">
-                                    <img className="object-cover w-25 h-25 rounded-2xl" src={product.image}/>
-                                    <div className="flex w-2/5 flex-col ml-4 text-sm">
+                            <div key={product.productId} className="flex px-2 md:px-0 justify-center items-center">
+                                <div className="relative md:w-[600px] w-[320px] md:h-[100px] m-1 items-center bg-white rounded-2xl py-1 md:p-0 px-1 md:p-0 shadow-2xl md:flex">
+                                    <div className="md:hidden absolute ">
+                                        <img className=" object-cover w-25 h-25 rounded-2xl" src={product.image}/>
+                                    </div>
+                                    <img className="hidden md:block object-cover w-25 h-25 rounded-2xl" src={product.image}/>
+                                    <div className="flex pl-25 md:pl-0 w-2/5 flex-col ml-4 text-sm">
                                         <span>{product.productId}</span>
-                                        <span>{product.name}</span>
+                                        <span className="min-w-[180px]">{product.name}</span>
                                         {(product.labeledPrice<=product.normalPrice)?(
                                             <span className="text-acsent font-bold text-md">
                                                 Rs. {product.normalPrice.toFixed(2)}
                                             </span>
-                                        ):(<div className="flex gap-5 justify-start">
+                                        ):(<div className="flex gap-5 min-w-[180px] justify-start">
                                             <span className="text-gray-500 line-through text-md">
                                                 Rs. {product.labeledPrice.toFixed(2)}
                                             </span>
@@ -60,7 +64,7 @@ const Cart =()=>{
                                         </div>
                                         )}
                                     </div>
-                                    <div className="flex justify-center items-center ml-4">
+                                    <div className="flex pl-15 md:pl-0 justify-center items-center ml-4">
                                         <button className=" p-3 font-bold text-red-600 text-3xl cursor-pointer "
                                             onClick={()=>{handleqty(product.productId,-1)}}
                                         >-</button>
@@ -69,7 +73,7 @@ const Cart =()=>{
                                             onClick={()=>{handleqty(product.productId,1)}}
                                         >+</button>
                                     </div>
-                                    <div className="ml-4 text-acsent font-bold text-lg">{(product.normalPrice*product.quantity).toFixed(2)}</div>
+                                    <div className="ml-4 pl-35 md:pl-0 text-acsent font-bold text-lg">{(product.normalPrice*product.quantity).toFixed(2)}</div>
                                 </div>
                                 <div 
                                     className="flex w-8 h-8 justify-center items-center cursor-pointer hover:bg-red-300 hover:rounded-full "
@@ -82,8 +86,8 @@ const Cart =()=>{
                     }
                 )}
             </div>
-            <div className=" w-1/2 h-full justify-center flex py-10 ">
-                <div className=" w-[400px] h-[340px] bg-white rounded-xl py-5 px-5 border border-gray-200 border-2">
+            <div className="w-full md:w-1/2 h-full justify-center flex py-5  md:py-10 ">
+                <div className=" w-[320px] md:w-[400px] h-[340px] bg-white rounded-xl py-5 px-5 border border-gray-200 border-2">
                     <div className="text-center font-bold text-2xl">Order Summary</div>
                     <div className="flex flex-col px-6 pt-5 gap-2 ">
                         <div className="flex justify-between">
@@ -94,13 +98,7 @@ const Cart =()=>{
                             <span className="text-gray-500 text-lg font-semibold">Discount</span>
                             <span className="text-lg font-semibold">Rs:{GetTotal().Discount.toFixed(2)}</span>
                         </div>
-                            <div
-                                style={{
-                                    width: '310px',
-                                    height: '2px', 
-                                    backgroundColor: 'black',
-                                }}
-                            ></div>
+                            <div className="border-b border-2 "/>
                     
                         <div className="flex justify-between mt-5">
                             <span className="text-black text-lg font-semibold">Total</span>
@@ -120,6 +118,7 @@ const Cart =()=>{
                 </div>
             </div>
         </div>
+        
         )
     )
 }

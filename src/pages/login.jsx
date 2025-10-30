@@ -30,15 +30,15 @@ const Login =()=>{
 
     return(
         <div className="w-full h-screen bg-[url('/images/cosmetic-oil.jpg')] bg-center bg-cover flex justify-evenly items-center">
-            <div className="w-1/2 h-full"></div>
-            <div className="w-1/2 h-full flex justify-center items-center">
-                <div className="flex justify-center items-center w-[500px] h-[600px] bg-white-400 shadow-xl rounded-lg backdrop-blur-md relative">
+            <div className="w-1/2 h-full hidden md:block"></div>
+            <div className="md:w-1/2 w-full h-full flex justify-center items-center">
+                <div className="flex justify-center items-center w-[500px] h-[600px] bg-white-400 md:shadow-xl rounded-lg backdrop-blur-md relative">
                     <button 
                     onClick={()=>navigate('/register')}
                     className=" absolute top-10 right-10 bg-acsent hover:bg-acsent/80 text-white px-4 py-2 rounded-xl font-semibold text-lg shadow-md cursor-pointer">
                     Register
                     </button>
-                    <form className="flex flex-col gap-4 justify-center items-center text-lg" >
+                    <form className="px-10 flex flex-col gap-4 justify-center items-center text-lg" >
                         <label className="text-center font-semibold">Email:</label>
                         <input
                             type="email"

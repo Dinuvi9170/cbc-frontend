@@ -9,9 +9,9 @@ const ImageSlider =(props)=>{
     }
 
     return(
-        <div className="px-10 py-10 flex w-[400px] h-[500px] relative">
-            <img src={images[activeImage]} className="h-[400px] object-cover border border-gray-100 rounded-2xl border-2"/>
-            <div className="flex absolute bottom-0 w-full h-[100px] justify-center items-center gap-2">
+        <div className="px-10 flex w-[450px] h-[500px] relative">
+            <img src={images[activeImage]} className="h-[400px] w-[400px] object-cover border border-gray-100 rounded-2xl border-2"/>
+            <div className="flex absolute bottom-0 w-full left-0 h-[100px] justify-center items-center gap-2">
                 {images?.map(
                     (image,i)=>{
                         return(

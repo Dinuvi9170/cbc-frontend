@@ -98,10 +98,10 @@ const Checkout = () => {
     }
     
     return (
-        <div className="w-full h-full bg-primary px-10 py-10">
+        <div className="w-full h-full bg-primary md:px-10 py-4 md:py-10">
             <h1 className=" text-center text-3xl font-bold text-acsent mb-8">Checkout</h1>
-            <div className="flex justify-center items-center px-10 gap-4">
-                <div className="w-1/2 max-w-3xl bg-white shadow-lg rounded-2xl -mt-6 p-6">
+            <div className="md:flex justify-center px-4 md:px-10 space-y-4 md:gap-4">
+                <div className="md:w-1/2 w-full max-w-3xl h-[400px] bg-white shadow-lg rounded-2xl p-6">
                     <h2 className="text-2xl font-semibold mb-4">Your Details</h2>
                     <div className="flex gap-6 mb-6">
                         <label className="block font-semibold">Name</label>
@@ -146,7 +146,7 @@ const Checkout = () => {
                         </div>
                     </div>
                 </div>
-                <div className="w-2/5 max-w-3xl bg-white shadow-lg rounded-2xl p-6">
+                <div className="md:w-2/5 w-full md:max-w-3xl bg-white shadow-lg rounded-2xl p-6">
                     <h2 className="text-2xl font-semibold text-gray-800 mb-4">
                     Order Summary
                     </h2>
@@ -167,7 +167,7 @@ const Checkout = () => {
                                     className="w-16 h-16 rounded-lg object-cover"
                                 />
                                 <div>
-                                    <h3 className="font-semibold text-gray-800">{item.name}</h3>
+                                    <h3 className="font-semibold text-gray-800 max-w-[120px] md:max-w-[300px]">{item.name}</h3>
                                     <p className="text-sm text-gray-500">
                                     Qty: {item.quantity}
                                     </p>

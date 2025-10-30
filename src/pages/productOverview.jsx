@@ -68,21 +68,35 @@ const ProductOverview =()=>{
                 </div>
             ):
             (
-                <div className="flex w-full flex-col md:flex-row h-screen bg-primary px-6 py-10 md:px-50 md:py-10 ">
-                    <div className="flex md:flex-col justify-center items-center md:w-1/2 h-full bg-white">
-                        <ImageSlider images={product.images}/>
-                    </div>
-                    <div className="md:w-1/2 h-full bg-white flex flex-col px-10 pt-20">
+                <div className="flex w-full flex-col md:flex-row h-full py-5 bg-white md:bg-primary md:px-50 md:py-10 ">
+                    <div className="md:hidden mt-5 px-10">
                         <div className="text-center text-3xl font-semibold">{product.name}</div>
-                        <div className="flex justify-center">
+                        <h1 className="flex-col text-center justify-center ">
                             {product.alternativeNames?.map(
                                 (alt,index)=>(
-                                    <div key={index} className="text-center text-xl font-semibold">{alt+ "|"}</div>
+                                    <span key={index} className=" text-xl font-semibold">{alt}                                  
+                                        <span className="mx-2 text-gray-400">|</span>                               
+                                    </span>
                                 )
                             )}
-                        </div>
-                        <div className="text-center text-sm text-gray-500 ">{product.productId}</div>
-                        <div className="text-md mt-10 text-gray-600">{product.description}</div>
+                        </h1>
+                    </div>
+                    <div className="flex md:flex-col bg-white justify-center items-center w-full md:w-1/2 min-h-[600px] h-full ">
+                        <ImageSlider images={product.images}/>
+                    </div>
+                    <div className="md:w-1/2 w-full h-full md:min-h-[600px] bg-white flex flex-col px-10 md:pt-20">
+                        <div className="text-center text-3xl hidden md:block font-semibold">{product.name}</div>
+                        <h1 className="flex-col text-center hidden md:block justify-center ">
+                            {product.alternativeNames?.map(
+                                (alt,index)=>(
+                                    <span key={index} className=" text-xl font-semibold">{alt}                                  
+                                        <span className="mx-2 text-gray-400">|</span>                               
+                                    </span>
+                                )
+                            )}
+                        </h1>
+                        <div className="text-center text-sm hidden md:block text-gray-500 ">{product.productId}</div>
+                        <div className="text-md md:mt-10 text-gray-600">{product.description}</div>
                         {product.labeledPrice > product.normalPrice ?(
                             <div className="flex gap-5 mt-6 justify-center">
                                 <span className="text-gray-500 line-through text-2xl">
@@ -99,15 +113,15 @@ const ProductOverview =()=>{
                                 </span>
                             </div>
                         )}
-                        <div className="flex justify-center gap-5 mt-10">
-                            <span>Quantity</span>
-                            <div className="flex border border-2 border-secondary rounded-lg">
+                        <div className="flex items-center justify-center gap-5 mt-10">
+                            <span className="text-lg font-semibold">Quantity</span>
+                            <div className="flex w-24 h-10 border border-2 border-secondary rounded-lg">
                                 <button 
-                                    className="bg-gray-200 rounded-tl-md font-bold text-xl rounded-bl-md px-2"
+                                    className="bg-gray-200 rounded-tl-md font-bold text-xl w-8 rounded-bl-md px-2"
                                     onClick={()=>{handleQuantity("-")}}>-</button>
-                                <span className="bg-white px-3">{qty || null}</span>
+                                <span className="bg-white px-3 w-8 flex items-center">{qty || null}</span>
                                 <button 
-                                    className="bg-gray-200 rounded-tr-md font-bold text-xl rounded-br-md px-2"
+                                    className="bg-gray-200 rounded-tr-md font-bold text-xl w-8 rounded-br-md px-2"
                                     onClick={()=>{handleQuantity("+")}}>+</button>
                             </div>
                         </div>
