@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import {toast} from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { GrGoogle } from "react-icons/gr";
 import { useGoogleLogin } from '@react-oauth/google';
 
@@ -56,7 +56,7 @@ const Login =()=>{
         <div className="w-full h-screen bg-[url('/images/cosmetic-oil.jpg')] bg-center bg-cover flex justify-evenly items-center">
             <div className="w-1/2 h-full hidden md:block"></div>
             <div className="md:w-1/2 w-full h-full flex justify-center items-center">
-                <div className="flex justify-center items-center w-[500px] h-[600px] bg-white-400 md:shadow-xl rounded-lg backdrop-blur-md relative">
+                <div className="flex flex-col justify-center items-center w-[500px] h-[600px] bg-white-400 md:shadow-xl rounded-lg backdrop-blur-md relative">
                     <button 
                     onClick={()=>navigate('/register')}
                     className=" absolute top-10 right-10 bg-acsent hover:bg-acsent/80 text-white px-4 py-2 rounded-xl font-semibold text-lg shadow-md cursor-pointer">
@@ -100,6 +100,7 @@ const Login =()=>{
                             </div>
                         </button>
                     </form>
+                    <Link to='/forgot_password' className="mt-5 text-sm font-bold hover:underline hover:text-blue-700">forgot password?</Link>
                 </div>
             </div>
         </div>

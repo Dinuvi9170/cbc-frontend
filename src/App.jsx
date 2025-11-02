@@ -15,6 +15,7 @@ import MainLayout from './components/layout/mainlayout'
 import AdminLayout from './components/layout/adminlayout'
 import RootLayout from './components/layout/rootlayout'
 import OrderProducts from './components/orderProducts'
+import ForgetPassword from './pages/forgetpassword'
 
 function App() {
   
@@ -34,6 +35,7 @@ function App() {
                 <Route path='/products/:productId' element={<ProductOverview/>}/>
                 <Route path='/cart' element={<Cart/>}/>
                 <Route path='/checkout' element={<Checkout/>}/>
+                <Route path='/forgot_password' element={<ForgetPassword/>}/>
               </Route>
               <Route element={<AdminLayout/>}>
                 <Route path='/admin/*' element={<Admin/>}/>
