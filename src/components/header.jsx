@@ -1,12 +1,26 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BiUser } from "react-icons/bi";
 import { BsCart } from "react-icons/bs";
 import { CgClose } from "react-icons/cg";
 import { GiHamburgerMenu } from "react-icons/gi";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Header =()=>{
     const [sidebarOpen,SetsidebarOpen]=useState(false);
+    const [currentuser,Setcurrentuser]=useState(null);
+    const [dropdownOpen,SetdropdownOpen]=useState(false);
+    const navigate= useNavigate();
+    
+    useEffect(()=>{
+        const user=JSON.parse(localStorage.getItem(currentuser));
+        Setcurrentuser(user)
+    },[])
+
+    const handlelogout=()=>{
+        localStorage.removeItem(currentuser);
+        Setcurrentuser(null);
+        dropdownOpen(false);
+    }
 
     return(
         <header className=" relative w-full h-[80px] py-3 shadow-2xl flex bg-white flex-between z-50">
@@ -52,10 +66,28 @@ const Header =()=>{
 
             </div>
             <div className="px-5 md:px-8 pt-4 gap-4 md:px-0 flex justify-end w-[200px] ">
-                <Link to='/login' className="">
-                    <BiUser fill="#821742" className="w-5 h-5 md:w-7 md:h-7"/>
-                </Link>
-                <Link to='/cart' className="">
+
+                {currentuser===null?(
+                    <BiUser fill="#821742" className="w-5 h-5 md:w-7 md:h-7 cursor-pointer" 
+                        onClick={()=>{
+                            if(window.location.pathname === '/login'){
+                                navigate(-1);
+                            }else{
+                                navigate('/login');
+                            }
+                        }}
+                    />
+                ):(
+                    <div className="relative" onClick={()=>SetdropdownOpen(!dropdownOpen)}>
+                        {dropdownOpen &&(
+                            <div className="absolute right-0 mt-2 bg-white shadow rounded w-32">
+                                <span onClick={handlelogout}>Log Out</span>
+                            </div>
+                        )}
+                    </div>
+                )}
+                    
+                <Link to='/cart'>
                     <BsCart fill="#821742" className="w-5 h-5 md:w-7 md:h-7"/>
                 </Link>
             </div>

@@ -76,7 +76,7 @@ const AdminProducts=()=>{
                                     <th className="py-3 px-2">{product.name}</th>
                                     <th className="py-3 px-2 flex justify-center"><img src={product.images[0]} className="w-[40px] h-[40px] object-cover rounded-md shadow-sm"/></th>
                                     <th className="py-3 px-2">{product.labeledPrice}</th>
-                                    <th className="py-3 px-2 font-semibold text-red-600">{product.normalPrice}</th>
+                                    <th className="py-3 px-2 font-semibold text-red-600">{product.normalPrice.toFixed(2)}</th>
                                     <th className="py-3 px-2">{product.stock}</th>
                                     <th className="py-3 px-2">
                                         <div className="flex justify-center items-center gap-5 cursor-pointer">
