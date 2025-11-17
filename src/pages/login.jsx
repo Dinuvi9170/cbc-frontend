@@ -19,11 +19,14 @@ const Login =()=>{
             console.log(response.data);
             toast.success("Login successful");
             localStorage.setItem("token",response.data.token);
+            localStorage.setItem("currentuser", JSON.stringify(response.data.user));
 
             if(response.data.role=="Admin"){
                 navigate('/admin/products');
+                window.location.reload();
             }else{
                 navigate('/');
+                window.location.reload();
             }
         }catch(e){
             toast.error(e.response.data.message);
@@ -39,11 +42,15 @@ const Login =()=>{
                 })
                 toast.success("Login successful")
                 const token=res.data.token;
-                localStorage.getItem("token",token)
+                localStorage.setItem("token",token)
+                localStorage.setItem("currentuser", JSON.stringify(res.data.user)); 
+
                 if(res.data.role=="Admin"){
                     navigate('/admin/products');
+                    window.location.reload();
                 }else{
                     navigate('/');
+                    window.location.reload();
                 }
             }catch(error){
                 console.log(error)
