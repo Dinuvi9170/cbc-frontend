@@ -2,7 +2,8 @@ import { Link } from "react-router-dom";
 
 const ProductCard = ({ product }) => {
     return (
-        <div
+        <Link
+        to={`/products/${product.productId}`}
         className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group w-full"
         >
         <div className="w-full h-48 overflow-hidden">
@@ -52,7 +53,7 @@ const ProductCard = ({ product }) => {
                 </Link>
             </div>
         </div>
-        </div>
+        </Link>
     );
 };
 

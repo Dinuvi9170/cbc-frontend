@@ -3,6 +3,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import ProductCard from "../components/productCard";
+import ProductSideBar from "../components/productSidebar";
 
 const Category = () => {
     const [products, setProducts] = useState([]);
@@ -35,8 +36,11 @@ const Category = () => {
     });
 
     return (
-        <div className="w-full min-h-screen p-6">
-            <div className="max-w-7xl mx-auto">
+        <div className="w-full flex min-h-screen pt-[80px]">
+            <div className="hidden md:block md:w-[300px] h-screen">
+                <ProductSideBar />
+            </div>
+            <div className="md:w-[calc(100%-(300px))] py-5 max-w-5xl mx-auto">
                 <h1 className="text-4xl font-bold text-acsent mb-6">
                 {category} Collection ✨
                 </h1>

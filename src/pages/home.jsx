@@ -3,7 +3,7 @@ import { BsArrowRight } from "react-icons/bs";
 
 const Home= ()=> {
   return (
-    <div className="bg-primary">
+    <div className="bg-primary pt-[80px]">
       <section className="relative h-[70vh] w-full">
         <img
           src="/images/hero-cosmetics.jpg"

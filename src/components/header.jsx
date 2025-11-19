@@ -2,16 +2,18 @@ import { useEffect, useState } from "react";
 import { BiUser } from "react-icons/bi";
 import { BsCart, BsSearch } from "react-icons/bs";
 import { CgClose, CgProfile } from "react-icons/cg";
-import { GiHamburgerMenu } from "react-icons/gi";
+import {  GiHamburgerMenu } from "react-icons/gi";
 import { Link, useNavigate } from "react-router-dom";
 import Search from "./search";
 import { LuLogOut } from "react-icons/lu";
+import { SlArrowDown } from "react-icons/sl";
 
 const Header = () => {
     const [sidebarOpen, SetsidebarOpen] = useState(false);
     const [currentuser, Setcurrentuser] = useState(null);
     const [dropdownOpen, SetdropdownOpen] = useState(false);
     const [searchShow, SetsearchShow] = useState(false);
+    const [productdown,Setproductdown] =useState(false);
     const [cart, Setcart] = useState(JSON.parse(localStorage.getItem("cart")) || []);
     const navigate = useNavigate();
     
@@ -56,7 +58,7 @@ const Header = () => {
 
     return (
         <>
-            <header className="relative w-full h-[80px] py-3 shadow-2xl flex bg-white flex-between z-50">
+            <header className='fixed w-full top-0 left-0 h-[80px] py-3 shadow-2xl flex bg-white flex-between z-50'>
                 <GiHamburgerMenu 
                     size="25" 
                     color="#821742" 
@@ -81,12 +83,47 @@ const Header = () => {
                                 onClick={() => SetsidebarOpen(false)}
                             />
                             <div className="flex flex-col w-full h-[calc(100%-80px)] gap-3 cursor-pointer font-semibold text-acsent">
-                                <a href='/' className="border-b py-2">
+                                <a href='/' className="border-b py-4">
                                     <span className="px-20">Home</span>
                                 </a>
-                                <a href='/products' className="border-b py-2">
-                                    <span className="px-20">Products</span>
-                                </a>
+                                <div >
+                                    {window.innerWidth >= 768 ? ( 
+                                        <a href="/products/" className="px-20 flex items-center">
+                                        Products
+                                        </a>
+                                    ) : (
+                                        <div className="px-20 flex gap-6 items-center">
+                                        Products
+                                        <SlArrowDown onClick={() => Setproductdown(!productdown)} />
+                                        </div>
+                                    )}
+                                </div>
+                                {productdown && (
+                                    <div className="flex flex-col mt-2 ml-4 gap-4 text-sm px-20 font-normal">
+                                        <a href="/products/" className="hover:text-acsent/80">
+                                            All
+                                        </a>
+                                        <a href="/products/Skincare" className="hover:text-acsent/80">
+                                            Skincare
+                                        </a>
+                                        <a href="/products/Makeup" className="hover:text-acsent/80">
+                                            Makeup
+                                        </a>
+                                        <a href="/products/Fragrance" className="hover:text-acsent/80">
+                                            Fragrances
+                                        </a>
+                                        <a href="/products/Haircare" className="hover:text-acsent/80">
+                                            Haircare
+                                        </a>
+                                        <a href="/products/Bodycare" className="hover:text-acsent/80">
+                                            Bath & Body
+                                        </a>
+                                        <a href="/products/Other" className="hover:text-acsent/80">
+                                            Other
+                                        </a>
+                                    </div>
+                                )}
+                                <div className="border-b"/>
                                 <a href='/about' className="border-b py-2">
                                     <span className="px-20">About</span>
                                 </a>
@@ -185,9 +222,13 @@ const Header = () => {
                 </div>
             </header>
             {searchShow && (
-                <div className="px-4">
-                    <Search/>
-                </div>
+                 <>
+                    <div className="px-4 absolute w-full mt-[80px] md:hidden">
+                        <Search />
+                    </div>
+
+                    <div className="h-[60px] md:hidden"></div>
+                </>
             )}
         </>
     );

@@ -2,6 +2,7 @@ import axios from 'axios';
 import ProductCard from '../components/productCard'
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { useState,useEffect} from 'react';
+import ProductSideBar from '../components/productSidebar';
 
 const Products= ()=>{
     const [products,setProducts]=useState([]);
@@ -25,18 +26,22 @@ const Products= ()=>{
     )
     return(
         (!isLoading)?
-        <div className='px-25 py-10 bg-primary w-full  h-full '>
+        <div className='w-full h-full flex min-h-screen pt-[80px]'>
+          <div className="hidden md:block md:w-[300px] h-full">
+            <ProductSideBar />
+          </div>
+          <div className="md:w-[calc(100%-(300px))] py-5 max-w-5xl flex-1 mx-auto overflow-y-auto">
             <div className='grid md:grid-cols-4 w-full h-full gap-4 justify-center'>
-                { products.map((product)=>{
-                    return(
-                        <ProductCard key={product.productId}
-                        product={product} 
-                        />
-                    )        
-                    })
-                }
+              { products.map((product)=>{
+                return(
+                  <ProductCard key={product.productId}
+                  product={product} 
+                  />
+                )        
+              })
+              }
             </div>
-            
+          </div>    
         </div>
         :
         <div className="w-full h-screen flex flex-col justify-center items-center">

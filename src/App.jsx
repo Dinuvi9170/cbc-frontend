@@ -17,6 +17,7 @@ import RootLayout from './components/layout/rootlayout'
 import OrderProducts from './components/orderProducts'
 import ForgetPassword from './pages/forgetpassword'
 import Category from './pages/catergories';
+import ProductSideBar from './components/productSidebar'
 
 function App() {
   return (
