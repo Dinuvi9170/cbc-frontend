@@ -16,9 +16,9 @@ import AdminLayout from './components/layout/adminlayout'
 import RootLayout from './components/layout/rootlayout'
 import OrderProducts from './components/orderProducts'
 import ForgetPassword from './pages/forgetpassword'
+import Category from './pages/catergories';
 
 function App() {
-  
   return (
     <GoogleOAuthProvider clientId={import.meta.env.VITE_Google_Client}>
       <BrowserRouter>
@@ -36,6 +36,7 @@ function App() {
                 <Route path='/cart' element={<Cart/>}/>
                 <Route path='/checkout' element={<Checkout/>}/>
                 <Route path='/forgot_password' element={<ForgetPassword/>}/>
+                <Route path='/categories/:category' element={<Category/>}/>
               </Route>
               <Route element={<AdminLayout/>}>
                 <Route path='/admin/*' element={<Admin/>}/>

@@ -33,6 +33,7 @@ export const Addcart=(product,quantity)=>{
         });
     }
     localStorage.setItem("cart",JSON.stringify(cart));
+    window.dispatchEvent(new Event("cartUpdated"));
 }
 
 export const DeleteCart =(productId)=>{
@@ -42,6 +43,7 @@ export const DeleteCart =(productId)=>{
     })
 
     localStorage.setItem("cart",JSON.stringify(updateCart));
+    window.dispatchEvent(new Event("cartUpdated"));
 }
 
 export const GetTotal =()=>{

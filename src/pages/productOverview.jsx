@@ -151,6 +151,17 @@ const ProductOverview =()=>{
                             >
                                     Buy Now
                             </button>
+                        </div>                
+                        <div className="mt-3">
+                            {product.stock > 0 ? (
+                                <span className="text-md font-medium text-green-600">
+                                    ✔ In Stock ({product.stock})
+                                 </span>
+                            ) : (
+                                <span className="text-sm font-medium text-red-600">
+                                    ✘ Out of Stock
+                                </span>
+                            )}
                         </div>
                     </div>
                 </div>

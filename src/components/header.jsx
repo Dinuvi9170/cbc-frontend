@@ -1,17 +1,19 @@
 import { useEffect, useState } from "react";
 import { BiUser } from "react-icons/bi";
 import { BsCart, BsSearch } from "react-icons/bs";
-import { CgClose } from "react-icons/cg";
+import { CgClose, CgProfile } from "react-icons/cg";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { Link, useNavigate } from "react-router-dom";
 import Search from "./search";
+import { LuLogOut } from "react-icons/lu";
 
 const Header = () => {
     const [sidebarOpen, SetsidebarOpen] = useState(false);
     const [currentuser, Setcurrentuser] = useState(null);
     const [dropdownOpen, SetdropdownOpen] = useState(false);
     const [searchShow, SetsearchShow] = useState(false);
-    const navigate = useNavigate();   
+    const [cart, Setcart] = useState(JSON.parse(localStorage.getItem("cart")) || []);
+    const navigate = useNavigate();
     
     useEffect(() => {
         const userLoad=()=>{
@@ -35,6 +37,15 @@ const Header = () => {
         return () => {
             window.removeEventListener("storage", userLoad);
         };
+    }, []);
+
+    useEffect(() => {
+        const updateCart = () => {
+        Setcart(JSON.parse(localStorage.getItem("cart")) || []);
+        };
+
+        window.addEventListener("cartUpdated", updateCart);
+        return () => window.removeEventListener("cartUpdated", updateCart);
     }, []);
 
     const handlelogout = () => {
@@ -110,8 +121,13 @@ const Header = () => {
                         className="w-5 h-5 md:w-7 md:h-7 md:hidden cursor-pointer"
                         onClick={()=>{SetsearchShow(!searchShow)}}
                     />   
-                    <Link to='/cart'>
+                    <Link to='/cart' className="relative">
                         <BsCart fill="#821742" className="w-5 h-5 md:w-7 md:h-7 cursor-pointer" />
+                        {cart.length>0 && (
+                            <span className="absolute -top-1 -right-2 bg-acsent text-white text-xs w-5 h-5 rounded-full flex justify-center items-center">
+                                {cart.length}
+                            </span>
+                        )}
                     </Link>
                     {!currentuser ? (
                         <BiUser 
@@ -133,13 +149,35 @@ const Header = () => {
                                 onClick={() => SetdropdownOpen(!dropdownOpen)}
                             />
                             {dropdownOpen && (
-                                <div className="absolute right-0 mt-2 bg-white shadow rounded w-32 p-2">
-                                    <span 
-                                        className="cursor-pointer hover:bg-gray-100 block p-2"
-                                        onClick={handlelogout}
-                                    >
+                                <div className="absolute right-0 top-11 mt-2 bg-primary shadow-lg rounded w-70 p-2">
+                                    <div className="flex rounded-lg gap-2 items-center px-1 py-1">
+                                        <div className="flex border-2 rounded-full w-12 justify-center items-center h-12 border-secondary fixed">
+                                            <img src={currentuser.profileimage} alt="profile_image" className="w-10 h-10 object-cover"/>                           
+                                        </div>
+                                        <div className="ml-12 flex flex-col text-acsent">                            
+                                            <span className="px-2 text-sm font-semibold">{currentuser.firstName} {currentuser.lastName}</span>
+                                            <span className="break-all text-xs px-2">{currentuser.email}</span>                            
+                                        </div>   
+                                    </div>
+                                    <div className="border-b w-full border-acsent mt-2"/> 
+                                    <div className="flex items-center px-5">
+                                        <CgProfile stroke="black"  />
+                                        <span 
+                                            className="cursor-pointer hover:underline text-gray-700 text-sm block p-2"
+                                            onClick={handlelogout}
+                                        >
+                                        My Profile
+                                        </span>
+                                    </div>
+                                    <div className="flex items-center -mt-2 px-5">
+                                        <LuLogOut stroke="black"  />
+                                        <span 
+                                            className="cursor-pointer hover:underline text-gray-700 text-sm block p-2"
+                                            onClick={handlelogout}
+                                        >
                                         Log Out
-                                    </span>
+                                        </span>
+                                    </div>
                                 </div>
                             )}
                         </div>

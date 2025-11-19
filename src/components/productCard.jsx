@@ -1,41 +1,59 @@
 import { Link } from "react-router-dom";
 
-const ProductCard =({product}) =>{
-    return(
-        <Link to={`/products/${product.productId}`} className="flex flex-col px-2 py-2 bg-white shadow-md w-[300px] h-[400px] rounded-lg">
-            <div className="w-full h-[200px] flex justify-center items-center overflow-hidden rounded-lg">
-                <img
-                src={product.images[0]}
-                alt={product.name}
-                className="object-contain h-full"
-                />
+const ProductCard = ({ product }) => {
+    return (
+        <div
+        className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group w-full"
+        >
+        <div className="w-full h-48 overflow-hidden">
+            <img
+            src={product.images?.[0] || "/images/placeholder.jpg"}
+            alt={product.name}
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+            />
+        </div>
+
+        <div className="p-4">
+            <h2 className="text-lg font-semibold text-gray-800 group-hover:text-acsent duration-200">
+            {product.name}
+            </h2>
+
+            <p className="text-sm text-gray-500 mt-1 line-clamp-2">
+            {product.description}
+            </p>
+
+            <div className="mt-3 flex items-center gap-2">
+            <span className="text-lg font-bold text-acsent">
+                Rs. {product.normalPrice.toFixed(2)}
+            </span>
+
+            <span className="line-through text-gray-400 text-sm">
+                Rs. {product.labeledPrice.toFixed(2)}
+            </span>
             </div>
 
-            <div className="flex flex-col gap-2 mt-3">
-                <h2 className="text-lg font-semibold text-gray-800">{product.name}</h2>
-                <p className="text-sm text-gray-500 line-clamp-2">{product.description}</p>
-
-                <div className="flex items-center gap-2 mt-1">
-                    <span className="text-gray-400 line-through text-sm">
-                        Rs. {product.labeledPrice.toFixed(2)}
+            <div className="mt-2 flex flex-wrap gap-1">
+                {product.skinType.map((skin) => (
+                    <span
+                        key={skin}
+                        className="text-xs bg-gray-200 px-2 py-1 rounded-full"
+                    >
+                    {skin}
                     </span>
-                    <span className="text-acsent font-bold text-lg">
-                        Rs. {product.normalPrice.toFixed(2)}
-                    </span>
-                </div>
-
-                {product.stock > 0 ? (
-                <span className="text-sm font-medium text-acsent mt-2">
-                    ✅ In Stock ({product.stock})
-                </span>
-                ) : (
-                <span className="text-sm font-medium text-red-600 mt-2">
-                    ❌ Out of Stock
-                </span>
-                )}
+                ))}
             </div>
-        </Link>
-    )
+
+            <div className="flex justify-between items-center mt-4">
+                <Link
+                    to={`/products/${product.productId}`}
+                    className="text-blue-600 font-semibold hover:underline"
+                >
+                    View Details
+                </Link>
+            </div>
+        </div>
+        </div>
+    );
 };
 
 export default ProductCard;

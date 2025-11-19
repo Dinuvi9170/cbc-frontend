@@ -1,4 +1,4 @@
-import { Link, Route, Routes, useLocation } from "react-router-dom";
+import { Link, Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import AdminProducts from "./admin/products";
 import Addproducts from "./admin/addproduct";
 import EditProducts from "./admin/editproducts";
@@ -13,6 +13,7 @@ const Admin =()=>{
     const [currentuser, Setcurrentuser]= useState(null);
     const [loading,Setloading]= useState(true);
     const [userdropdown,setUserdropdown]= useState(false);
+    const navigate =useNavigate();
 
     useEffect(() => {
         const userLoad=()=>{
@@ -51,7 +52,8 @@ const Admin =()=>{
     const handlelogout = () => {
         localStorage.removeItem('currentuser');
         Setcurrentuser(null);
-        SetdropdownOpen(false);
+        setUserdropdown(false);
+        navigate("/login");
     };
 
     const path=location.pathname;
@@ -86,11 +88,11 @@ const Admin =()=>{
                     onClick={()=>setUserdropdown(!userdropdown)}
                     >
                         <div className="flex border-2 rounded-full w-12 justify-center items-center h-12 border-secondary fixed">
-                            <img src={currentuser.profileimage} alt="profile_image" className="w-10 h-10 object-cover"/>                           
+                            <img src={currentuser?.profileimage} alt="profile_image" className="w-10 h-10 object-cover"/>                           
                         </div>
                         <div className="ml-12 flex flex-col text-acsent">                            
-                            <span className="px-2 text-sm font-semibold">{currentuser.firstName} {currentuser.lastName}</span>
-                            <span className="break-all text-xs px-2">{currentuser.email}</span>                            
+                            <span className="px-2 text-sm font-semibold">{currentuser?.firstName} {currentuser?.lastName}</span>
+                            <span className="break-all text-xs px-2">{currentuser?.email}</span>                            
                         </div>    
                     </div>
                     {userdropdown && (

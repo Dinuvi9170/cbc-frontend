@@ -28,31 +28,32 @@ const Home= ()=> {
         </div>
       </section>
 
-      {/* CATEGORIES */}
       <section className="px-6 md:px-20 py-12">
-        <h2 className="text-2xl md:text-3xl font-bold text-[#821742]">Shop By Category</h2>
+        <h2 className="text-2xl md:text-3xl font-bold text-acsent">Shop By Category</h2>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-6">
+        <div className="grid grid-cols-2 md:grid-cols-6 gap-6 mt-6">
           {[
-            { name: "Makeup", img: "/images/makeup.jpg" },
-            { name: "Skincare", img: "/images/skin.jpg" },
-            { name: "Fragrances", img: "/images/perfume.jpg" },
-            { name: "Accessories", img: "/images/accessories.jpg" }
+            { name: "Makeup", img: "/images/categories/makeup.jpg",url: "/categories/Makeup" },
+            { name: "Skincare", img: "/images/categories/skincare.jpg", url: "/categories/Skincare" },
+            { name: "Haircare", img: "/images/categories/haircare.jpg", url: "/categories/Haircare" },
+            { name: "Fragrances", img: "/images/categories/fagrances.jpg" ,url: "/categories/Fragrance"},
+            { name: "Bath & Body", img: "/images/categories/bathe&body.jpg", url: "/categories/Bodycare" },
+            { name: "Other", img: "/images/categories/other.avif",url: "/categories/Other" },
           ].map((c) => (
-            <div
+            <Link to={c.url}
               key={c.name}
               className="rounded-xl overflow-hidden shadow-lg bg-white group cursor-pointer"
             >
               <img src={c.img} className="h-40 w-full object-cover group-hover:scale-105 duration-300" />
               <p className="text-center py-3 font-semibold text-gray-700">{c.name}</p>
-            </div>
+            </Link>
           ))}
         </div>
       </section>
 
       {/* TRENDING PRODUCTS */}
       <section className="px-6 md:px-20 py-12 bg-white rounded-t-3xl shadow-inner">
-        <h2 className="text-2xl md:text-3xl font-bold text-[#821742]">Trending Now</h2>
+        <h2 className="text-2xl md:text-3xl font-bold text-acsent">Trending Now</h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mt-6">
           {[1,2,3,4].map((i) => (
@@ -60,7 +61,7 @@ const Home= ()=> {
               <img src={`/images/prod${i}.jpg`} className="h-40 w-full object-cover rounded-lg" />
               <h3 className="font-semibold mt-3">Luxury Lipstick {i}</h3>
               <p className="text-gray-500">Soft Matte Finish</p>
-              <p className="text-[#821742] font-bold mt-2">$24</p>
+              <p className="text-acsent font-bold mt-2">$24</p>
             </div>
           ))}
         </div>
@@ -68,7 +69,7 @@ const Home= ()=> {
 
       {/* SHOP BY SKIN TYPE */}
       <section className="px-6 md:px-20 py-12">
-        <h2 className="text-2xl md:text-3xl font-bold text-[#821742]">Shop by Skin Type</h2>
+        <h2 className="text-2xl md:text-3xl font-bold text-acsent">Shop by Skin Type</h2>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-6">
           {["Dry", "Oily", "Normal", "Sensitive"].map((type) => (
@@ -84,7 +85,7 @@ const Home= ()=> {
 
       {/* TESTIMONIALS */}
       <section className="px-6 md:px-20 py-12 bg-[#FFF4F7]">
-        <h2 className="text-2xl md:text-3xl font-bold text-[#821742]">What Customers Say</h2>
+        <h2 className="text-2xl md:text-3xl font-bold text-acsent">What Customers Say</h2>
 
         <div className="mt-6 grid md:grid-cols-3 gap-6">
           {[1,2,3].map((i) => (
@@ -100,7 +101,7 @@ const Home= ()=> {
 
       {/* NEWSLETTER */}
       <section className="px-6 md:px-20 py-12 text-center">
-        <h2 className="text-2xl md:text-3xl font-bold text-[#821742]">Stay Updated</h2>
+        <h2 className="text-2xl md:text-3xl font-bold text-acsent">Stay Updated</h2>
         <p className="text-gray-600 mt-2">Get exclusive offers, tips and new arrivals.</p>
 
         <div className="mt-5 flex justify-center">
@@ -116,7 +117,7 @@ const Home= ()=> {
       </section>
 
       {/* FOOTER */}
-      <footer className="bg-[#821742] text-white py-8 text-center">
+      <footer className="bg-acsent text-white py-8 text-center">
         <p>© 2025 BeautyLux Cosmetics. All Rights Reserved.</p>
       </footer>
 

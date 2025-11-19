@@ -98,7 +98,7 @@ const Checkout = () => {
     }
     
     return (
-        <div className="w-full h-full bg-primary md:px-10 py-4 md:py-10">
+        <div className="w-full h-screen bg-primary md:px-10 py-4 md:py-10">
             <h1 className=" text-center text-3xl font-bold text-acsent mb-8">Checkout</h1>
             <div className="md:flex justify-center px-4 md:px-10 space-y-4 md:gap-4">
                 <div className="md:w-1/2 w-full max-w-3xl h-[400px] bg-white shadow-lg rounded-2xl p-6">

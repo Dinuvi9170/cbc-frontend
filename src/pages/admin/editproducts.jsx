@@ -131,7 +131,7 @@ const EditProducts = () => {
                     <option value="Haircare">Haircare</option>
                     <option value="Fragrance">Fragrance</option>
                     <option value="Bodycare">Bath & Body</option>
-                    <option value="other">Other</option>
+                    <option value="Other">Other</option>
                 </select>
 
                 <label className="text-sm font-medium text-gray-900">Put a
