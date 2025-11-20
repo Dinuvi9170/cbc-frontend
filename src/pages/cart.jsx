@@ -30,12 +30,12 @@ const Cart =()=>{
 
     return(
         (cart.length<=0)?(
-        <div className="w-full h-full flex flex-col pt-20 bg-primary items-center"> 
+        <div className="w-full h-full flex flex-col pt-50 bg-primary items-center"> 
             <h1 className="text-2xl font-semibold text-blue-700">Your cart is empty</h1>
         </div>
         ):(
-        <div className="md:flex px-1 py-2 w-full h-screen md:px-40 md:py-10 bg-primary justify-center ">
-            <h1 className="md:hidden text-3xl font-bold text-acsent ml-3 mb-4">Your Shopping Cart</h1>
+        <div className="md:flex px-1 py-2 w-full h-screen md:px-40 pt-[90px] md:pt-[100px] md:py-10 bg-primary justify-center ">
+            <h1 className="md:hidden text-2xl text-center font-bold text-acsent ml-3 mb-4">Your Shopping Cart</h1>
             <div className="md:w-2/3 w-full h-full flex flex-col md:py-10">
                 <h1 className="hidden md:block text-3xl font-bold text-acsent ml-3 mb-4">Your Shopping Cart</h1>
                 {cart.map(

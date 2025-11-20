@@ -26,22 +26,27 @@ const Products= ()=>{
     )
     return(
         (!isLoading)?
-        <div className='w-full h-full flex min-h-screen pt-[80px]'>
-          <div className="hidden md:block md:w-[300px] h-full">
-            <ProductSideBar />
-          </div>
-          <div className="md:w-[calc(100%-(300px))] py-5 max-w-5xl flex-1 mx-auto overflow-y-auto">
-            <div className='grid md:grid-cols-4 w-full h-full gap-4 justify-center'>
-              { products.map((product)=>{
-                return(
-                  <ProductCard key={product.productId}
-                  product={product} 
-                  />
-                )        
-              })
-              }
+        <div className='w-full flex min-h-screen pt-[80px] '>
+          <div className="w-full h-screen flex overflow-y-scroll">
+            <div className="hidden md:block md:w-[300px] h-screen">
+              <ProductSideBar />
             </div>
-          </div>    
+            <div className="md:w-[calc(100%-(300px))] py-5 max-w-5xl mx-auto">
+              <h1 className="text-2xl md:text-4xl font-bold text-acsent text-center md:text-start mb-6">
+                  All Products ✨
+                  </h1>
+              <div className='grid md:grid-cols-4 gap-4 px-8 md:px-0 py-2 justify-center'>
+                { products.map((product)=>{
+                  return(
+                    <ProductCard key={product.productId}
+                    product={product} 
+                    />
+                  )        
+                })
+                }
+              </div>
+            </div>   
+          </div> 
         </div>
         :
         <div className="w-full h-screen flex flex-col justify-center items-center">

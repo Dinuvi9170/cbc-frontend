@@ -86,7 +86,7 @@ const Header = () => {
                                 <a href='/' className="border-b py-4">
                                     <span className="px-20">Home</span>
                                 </a>
-                                <div >
+                                <div onClick={() => Setproductdown(!productdown)} >
                                     {window.innerWidth >= 768 ? ( 
                                         <a href="/products/" className="px-20 flex items-center">
                                         Products
@@ -94,7 +94,7 @@ const Header = () => {
                                     ) : (
                                         <div className="px-20 flex gap-6 items-center">
                                         Products
-                                        <SlArrowDown onClick={() => Setproductdown(!productdown)} />
+                                        <SlArrowDown />
                                         </div>
                                     )}
                                 </div>
@@ -103,22 +103,22 @@ const Header = () => {
                                         <a href="/products/" className="hover:text-acsent/80">
                                             All
                                         </a>
-                                        <a href="/products/Skincare" className="hover:text-acsent/80">
+                                        <a href="/categories/Skincare" className="hover:text-acsent/80">
                                             Skincare
                                         </a>
-                                        <a href="/products/Makeup" className="hover:text-acsent/80">
+                                        <a href="/categories/Makeup" className="hover:text-acsent/80">
                                             Makeup
                                         </a>
-                                        <a href="/products/Fragrance" className="hover:text-acsent/80">
+                                        <a href="/categories/Fragrance" className="hover:text-acsent/80">
                                             Fragrances
                                         </a>
                                         <a href="/products/Haircare" className="hover:text-acsent/80">
                                             Haircare
                                         </a>
-                                        <a href="/products/Bodycare" className="hover:text-acsent/80">
+                                        <a href="/categories/Bodycare" className="hover:text-acsent/80">
                                             Bath & Body
                                         </a>
-                                        <a href="/products/Other" className="hover:text-acsent/80">
+                                        <a href="/categories/Other" className="hover:text-acsent/80">
                                             Other
                                         </a>
                                     </div>

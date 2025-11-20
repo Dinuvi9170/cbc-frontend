@@ -63,13 +63,13 @@ const ProductOverview =()=>{
                 </div>
             ):
             !product?(
-                <div className="w-full h-screen flex flex-col bg-primary pt-20 items-center"> 
+                <div className="w-full h-screen flex flex-col bg-primary pt-[80px] items-center"> 
                     <h1 className="text-2xl font-semibold text-blue-700">Product details not found.</h1>
                 </div>
             ):
             (
-                <div className="flex w-full flex-col md:flex-row h-full py-5 bg-white md:bg-primary md:px-50 md:py-10 ">
-                    <div className="md:hidden mt-5 px-10">
+                <div className="flex w-full flex-col md:flex-row h-full py-5 md:pt-[100px] bg-white md:bg-primary md:px-50 md:py-10 ">
+                    <div className="md:hidden mt-5 px-10 pt-[80px]">
                         <div className="text-center text-3xl font-semibold">{product.name}</div>
                         <h1 className="flex-col text-center justify-center ">
                             {product.alternativeNames?.map(

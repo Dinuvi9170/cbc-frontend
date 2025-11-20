@@ -4,7 +4,7 @@ const ProductCard = ({ product }) => {
     return (
         <Link
         to={`/products/${product.productId}`}
-        className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group w-full"
+        className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 z-40 group w-full"
         >
         <div className="w-full h-48 overflow-hidden">
             <img
@@ -45,12 +45,9 @@ const ProductCard = ({ product }) => {
             </div>
 
             <div className="flex justify-between items-center mt-4">
-                <Link
-                    to={`/products/${product.productId}`}
-                    className="text-blue-600 font-semibold hover:underline"
-                >
+                <div className="text-blue-600 font-semibold hover:underline pointer-events-none">
                     View Details
-                </Link>
+                </div>
             </div>
         </div>
         </Link>
