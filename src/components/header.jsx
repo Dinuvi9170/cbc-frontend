@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { BiUser } from "react-icons/bi";
-import { BsCart, BsSearch } from "react-icons/bs";
+import { BsCart, BsDot, BsSearch } from "react-icons/bs";
 import { CgClose, CgProfile } from "react-icons/cg";
 import {  GiHamburgerMenu } from "react-icons/gi";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Search from "./search";
 import { LuLogOut } from "react-icons/lu";
 import { SlArrowDown } from "react-icons/sl";
@@ -16,6 +16,9 @@ const Header = () => {
     const [productdown,Setproductdown] =useState(false);
     const [cart, Setcart] = useState(JSON.parse(localStorage.getItem("cart")) || []);
     const navigate = useNavigate();
+    const location =useLocation();
+
+    const hideSearch = location.pathname.startsWith("/categories") || location.pathname.startsWith("/skintypes");
     
     useEffect(() => {
         const userLoad=()=>{
@@ -99,28 +102,46 @@ const Header = () => {
                                     )}
                                 </div>
                                 {productdown && (
-                                    <div className="flex flex-col mt-2 ml-4 gap-4 text-sm px-20 font-normal">
-                                        <a href="/products/" className="hover:text-acsent/80">
-                                            All
-                                        </a>
-                                        <a href="/categories/Skincare" className="hover:text-acsent/80">
-                                            Skincare
-                                        </a>
-                                        <a href="/categories/Makeup" className="hover:text-acsent/80">
-                                            Makeup
-                                        </a>
-                                        <a href="/categories/Fragrance" className="hover:text-acsent/80">
-                                            Fragrances
-                                        </a>
-                                        <a href="/products/Haircare" className="hover:text-acsent/80">
-                                            Haircare
-                                        </a>
-                                        <a href="/categories/Bodycare" className="hover:text-acsent/80">
-                                            Bath & Body
-                                        </a>
-                                        <a href="/categories/Other" className="hover:text-acsent/80">
-                                            Other
-                                        </a>
+                                    <div className="flex flex-col ml-2 text-sm px-20 gap-2 ">
+                                        <h1 className="flex items-center font-bold"><BsDot/> Categories</h1>
+                                        <div className="flex flex-col mt-2 ml-6 gap-2 font-normal">
+                                            <a href="/products/" className="hover:text-acsent/80">
+                                                All
+                                            </a>
+                                            <a href="/categories/Skincare" className="hover:text-acsent/80">
+                                                Skincare
+                                            </a>
+                                            <a href="/categories/Makeup" className="hover:text-acsent/80">
+                                                Makeup
+                                            </a>
+                                            <a href="/categories/Fragrance" className="hover:text-acsent/80">
+                                                Fragrances
+                                            </a>
+                                            <a href="/products/Haircare" className="hover:text-acsent/80">
+                                                Haircare
+                                            </a>
+                                            <a href="/categories/Bodycare" className="hover:text-acsent/80">
+                                                Bath & Body
+                                            </a>
+                                            <a href="/categories/Other" className="hover:text-acsent/80">
+                                                Other
+                                            </a>
+                                        </div>
+                                        <h1 className="flex items-center font-bold"><BsDot/> Skin Types</h1>
+                                        <div className="flex flex-col mt-2 ml-6 gap-2 font-normal">
+                                            <a href="/skintypes/Dry" className="hover:text-acsent/80">
+                                                Dry Skin
+                                            </a>
+                                            <a href="/skintypes/Normal" className="hover:text-acsent/80">
+                                                Normal Skin
+                                            </a>
+                                            <a href="/skintypes/Oily" className="hover:text-acsent/80">
+                                                Oily Skin
+                                            </a>
+                                            <a href="/skintypes/Sensitive" className="hover:text-acsent/80">
+                                                Sensitive Skin
+                                            </a>
+                                        </div>
                                     </div>
                                 )}
                                 <div className="border-b"/>
@@ -149,15 +170,19 @@ const Header = () => {
                     <Link to="/about" className="text-xl font-semibold">About</Link>
                     <Link to="/contact" className="text-xl font-semibold">Contact</Link>
                 </div>
-                <div className="hidden md:block justify-center w-[500px] -mt-1">
-                    <Search/>
-                </div>
+                {!hideSearch && (
+                    <div className="hidden md:block justify-center w-[500px] -mt-1">
+                        <Search/>
+                    </div>
+            )}
                 <div className="px-4 md:px-6 pt-4 gap-4 md:px-0 flex justify-end w-[300px] md:w-[150px]">
-                    <BsSearch 
-                        fill="#821742" 
-                        className="w-5 h-5 md:w-7 md:h-7 md:hidden cursor-pointer"
-                        onClick={()=>{SetsearchShow(!searchShow)}}
-                    />   
+                    {!hideSearch && (
+                        <BsSearch 
+                            fill="#821742" 
+                            className="w-5 h-5 md:w-7 md:h-7 md:hidden cursor-pointer"
+                            onClick={()=>{SetsearchShow(!searchShow)}}
+                        /> 
+                    )}  
                     <Link to='/cart' className="relative">
                         <BsCart fill="#821742" className="w-5 h-5 md:w-7 md:h-7 cursor-pointer" />
                         {cart.length>0 && (

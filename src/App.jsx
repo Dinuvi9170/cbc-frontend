@@ -17,7 +17,8 @@ import RootLayout from './components/layout/rootlayout'
 import OrderProducts from './components/orderProducts'
 import ForgetPassword from './pages/forgetpassword'
 import Category from './pages/catergories';
-import ProductSideBar from './components/productSidebar'
+import SkinTypeProducts from './pages/skinTypeProducts';
+import SearchProductsPage from './pages/headerSearchpage';
 
 function App() {
   return (
@@ -38,6 +39,8 @@ function App() {
                 <Route path='/checkout' element={<Checkout/>}/>
                 <Route path='/forgot_password' element={<ForgetPassword/>}/>
                 <Route path='/categories/:category' element={<Category/>}/>
+                <Route path='/skintypes/:skinType' element={<SkinTypeProducts/>}/>
+                <Route path='/productSearch' element={<SearchProductsPage/>}/>
               </Route>
               <Route element={<AdminLayout/>}>
                 <Route path='/admin/*' element={<Admin/>}/>

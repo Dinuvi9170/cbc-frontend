@@ -2,6 +2,20 @@ import { Link } from "react-router-dom";
 import { BsArrowRight } from "react-icons/bs";
 
 const Home= ()=> {
+  const categories = [
+    { name: "Makeup", img: "/images/categories/makeup.jpg",url: "/categories/Makeup" },
+    { name: "Skincare", img: "/images/categories/skincare.jpg", url: "/categories/Skincare" },
+    { name: "Haircare", img: "/images/categories/haircare.jpg", url: "/categories/Haircare" },
+    { name: "Fragrances", img: "/images/categories/fagrances.jpg" ,url: "/categories/Fragrance"},
+    { name: "Bath & Body", img: "/images/categories/bathe&body.jpg", url: "/categories/Bodycare" },
+    { name: "Other", img: "/images/categories/other.avif",url: "/categories/Other" },
+  ];
+  const Skin=[
+    {name:"Dry",url:'/skintypes/Dry'}, 
+    {name:"Oily",url:'/skintypes/Oily'}, 
+    {name:"Normal",url:'/skintypes/Normal'},
+    { name:"Sensitive",url:'/skintypes/Sensitive'}
+  ];
   return (
     <div className="bg-primary pt-[80px]">
       <section className="relative h-[70vh] w-full">
@@ -20,7 +34,7 @@ const Home= ()=> {
             </p>
             <Link
               to="/products"
-              className="inline-flex items-center mt-5 px-6 py-3 bg-white text-[#821742] font-semibold rounded-full shadow hover:bg-[#f8e7ec]"
+              className="inline-flex items-center mt-5 px-6 py-3 bg-white text-acsent font-semibold rounded-full shadow hover:bg-[#f8e7ec]"
             >
               Shop Now <BsArrowRight className="ml-2" />
             </Link>
@@ -32,14 +46,7 @@ const Home= ()=> {
         <h2 className="text-2xl md:text-3xl font-bold text-acsent">Shop By Category</h2>
 
         <div className="grid grid-cols-2 md:grid-cols-6 gap-6 mt-6">
-          {[
-            { name: "Makeup", img: "/images/categories/makeup.jpg",url: "/categories/Makeup" },
-            { name: "Skincare", img: "/images/categories/skincare.jpg", url: "/categories/Skincare" },
-            { name: "Haircare", img: "/images/categories/haircare.jpg", url: "/categories/Haircare" },
-            { name: "Fragrances", img: "/images/categories/fagrances.jpg" ,url: "/categories/Fragrance"},
-            { name: "Bath & Body", img: "/images/categories/bathe&body.jpg", url: "/categories/Bodycare" },
-            { name: "Other", img: "/images/categories/other.avif",url: "/categories/Other" },
-          ].map((c) => (
+          {categories.map((c) => (
             <Link to={c.url}
               key={c.name}
               className="rounded-xl overflow-hidden shadow-lg bg-white group cursor-pointer"
@@ -67,18 +74,17 @@ const Home= ()=> {
         </div>
       </section>
 
-      {/* SHOP BY SKIN TYPE */}
       <section className="px-6 md:px-20 py-12">
         <h2 className="text-2xl md:text-3xl font-bold text-acsent">Shop by Skin Type</h2>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-6">
-          {["Dry", "Oily", "Normal", "Sensitive"].map((type) => (
-            <div
-              key={type}
+          {Skin.map((type) => (
+            <Link to={type.url}
+              key={type.name}
               className="border border-[#fad0e6] rounded-2xl p-6 text-center font-semibold bg-white hover:bg-[#ffebf2] duration-300"
             >
-              {type} Skin
-            </div>
+              {type.name} Skin
+            </Link>
           ))}
         </div>
       </section>

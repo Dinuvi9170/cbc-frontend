@@ -24,23 +24,38 @@ const ProductSideBar = () => {
                 <h1 className="text-2xl font-bold text-acsent -mt-5 text-center">Categories</h1>
                 <nav className="flex flex-col justify-center px-15">
                     <Link to="/categories/Makeup"
-                        className={`${getlink("Makeup")} text-acsent py-3 px-4 rounded-lg hover:text-red-700 transition-all flex items-center duration-200 font-semibold`}
+                        className={`${getlink("Makeup")} text-acsent px-4 rounded-lg hover:text-red-700 transition-all flex items-center duration-200 font-semibold`}
                     > <SlArrowRight className="w-3 h-3"/> Makeup</Link>
                     <Link to="/categories/Skincare"
-                        className={`${getlink("Skincare")} text-acsent py-3 px-4 rounded-lg hover:text-red-700 transition-all flex items-center duration-200 font-semibold`}
+                        className={`${getlink("Skincare")} text-acsent px-4 rounded-lg hover:text-red-700 transition-all flex items-center duration-200 font-semibold`}
                     ><SlArrowRight className="w-3 h-3"/>Skincare</Link>
                     <Link to="/categories/Haircare"
-                        className={`${getlink("Haircare")} text-acsent py-3 px-4 rounded-lg hover:text-red-700 transition-all flex items-center duration-200 font-semibold`}
+                        className={`${getlink("Haircare")} text-acsent px-4 rounded-lg hover:text-red-700 transition-all flex items-center duration-200 font-semibold`}
                     ><SlArrowRight className="w-3 h-3"/>Haircare</Link>
                     <Link to="/categories/Fragrance"
-                        className={`${getlink("Fragrance")} text-acsent py-3 px-4 rounded-lg hover:text-red-700 transition-all flex items-center duration-200 font-semibold`}
+                        className={`${getlink("Fragrance")} text-acsent px-4 rounded-lg hover:text-red-700 transition-all flex items-center duration-200 font-semibold`}
                     ><SlArrowRight className="w-3 h-3"/>Fragrances</Link>
                     <Link to="/categories/Bodycare"
-                        className={`${getlink("Bodycare")} text-acsent py-3 px-4 rounded-lg hover:text-red-700 transition-all flex items-center duration-200 font-semibold`}
+                        className={`${getlink("Bodycare")} text-acsent px-4 rounded-lg hover:text-red-700 transition-all flex items-center duration-200 font-semibold`}
                     ><SlArrowRight className="w-3 h-3"/>Bath & Body</Link>
                     <Link to="/categories/Other"
-                        className={`${getlink("Other")} text-acsent py-3 px-4 rounded-lg hover:text-red-700 transition-all flex items-center duration-200 font-semibold`}
+                        className={`${getlink("Other")} text-acsent px-4 rounded-lg hover:text-red-700 transition-all flex items-center duration-200 font-semibold`}
                     ><SlArrowRight className="w-3 h-3"/>Other</Link>
+                </nav>
+                <h1 className="text-2xl font-bold text-acsent mt-2 text-center">Skin Types</h1>
+                <nav className="flex flex-col justify-center -ml-7">
+                    <Link to="/skintypes/Dry"
+                        className={`${getlink("Dry")} text-acsent px-4 rounded-lg hover:text-red-700 transition-all flex items-center duration-200 font-semibold`}
+                    > <SlArrowRight className="w-3 h-3"/> Dry</Link>
+                    <Link to="/skintypes/Oily"
+                        className={`${getlink("Oily")} text-acsent px-4 rounded-lg hover:text-red-700 transition-all flex items-center duration-200 font-semibold`}
+                    ><SlArrowRight className="w-3 h-3"/>Oily</Link>
+                    <Link to="/skintypes/Normal"
+                        className={`${getlink("Normal")} text-acsent px-4 rounded-lg hover:text-red-700 transition-all flex items-center duration-200 font-semibold`}
+                    ><SlArrowRight className="w-3 h-3"/>Normal</Link>
+                    <Link to="/skintypes/Sensitive"
+                        className={`${getlink("Sensitive")} text-acsent px-4 rounded-lg hover:text-red-700 transition-all flex items-center duration-200 font-semibold`}
+                    ><SlArrowRight className="w-3 h-3"/>Sensitive</Link>
                 </nav>
             </div>
         </div>

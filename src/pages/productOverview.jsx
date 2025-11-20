@@ -63,8 +63,8 @@ const ProductOverview =()=>{
                 </div>
             ):
             !product?(
-                <div className="w-full h-screen flex flex-col bg-primary pt-[80px] items-center"> 
-                    <h1 className="text-2xl font-semibold text-blue-700">Product details not found.</h1>
+                <div className="w-full h-screen flex flex-col bg-primary pt-[80px] md:pt-[120px] items-center"> 
+                    <h1 className="text-2xl font-semibold text-gray-500">Product details not found.</h1>
                 </div>
             ):
             (

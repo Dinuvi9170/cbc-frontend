@@ -7,13 +7,13 @@ import ProductSideBar from "../components/productSidebar";
 const Category = () => {
     const [products, setProducts] = useState([]);
     const [search, setSearch] = useState("");
-    const [skinFilter, setSkinFilter] = useState("");
-    const {category}= useParams();
+    const [categoryFilter, setcategoryFilter] = useState("");
+    const {skinType}= useParams();
 
     const loadProducts = async () => {
         try {
             const res = await axios.get(
-                import.meta.env.VITE_BACKEND_URL + `/api/products/categories/${category}`
+                import.meta.env.VITE_BACKEND_URL + `/api/products/skintypes/${skinType}`
             );
             setProducts(res.data);
         } catch (error) {
@@ -23,16 +23,16 @@ const Category = () => {
     };
 
     useEffect(() => {
-        if (category) {
+        if (skinType) {
             loadProducts();
         }
-    }, [category]);
+    }, [skinType]);
 
 
     const filtered = products.filter((p) => {
         const matchesSearch = p.name.toLowerCase().includes(search.toLowerCase());
-        const matchesSkin = skinFilter ? p.skinType.includes(skinFilter) : true;
-        return matchesSearch && matchesSkin;
+        const matchesCategory = categoryFilter ? (p.category ?? "").toLowerCase().includes(categoryFilter.toLowerCase()) : true;
+        return matchesSearch && matchesCategory;
     });
 
     return (
@@ -43,7 +43,7 @@ const Category = () => {
                 </div>
                 <div className="md:w-[calc(100%-(300px))] px-8 md:px-0 py-5 max-w-5xl mx-auto">
                     <h1 className="text-2xl md:text-4xl font-bold text-acsent text-center md:text-start mb-6">
-                    {category} Products ✨
+                    Products for {skinType} skin ✨
                     </h1>
 
                     <div className="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
@@ -56,15 +56,17 @@ const Category = () => {
                         />
 
                         <select
-                            value={skinFilter}
-                            onChange={(e) => setSkinFilter(e.target.value)}
+                            value={categoryFilter}
+                            onChange={(e) => setcategoryFilter(e.target.value)}
                             className="w-full md:w-1/4 p-2 z-10 border rounded-lg shadow-sm"
                         >
-                            <option value="">Filter by Skin Type</option>
-                            <option value="Dry">Dry</option>
-                            <option value="Oily">Oily</option>
-                            <option value="Normal">Normal</option>
-                            <option value="Sensitive">Sensitive</option>
+                            <option value="">Filter by Category</option>
+                            <option value="Makeup">Makeup</option>
+                            <option value="Skincare">Skincare</option>
+                            <option value="Haircare">Haircare</option>
+                            <option value="Fragrances">Fragrances</option>
+                            <option value="Bodycare">Bath & Body</option>
+                            <option value="Other">Other</option>
                         </select>
                     </div>
 

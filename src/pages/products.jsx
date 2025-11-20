@@ -49,9 +49,14 @@ const Products= ()=>{
           </div> 
         </div>
         :
+        <div className='w-full flex min-h-screen pt-[80px] '>
+        <div className="hidden md:block md:w-[300px] h-screen">
+              <ProductSideBar />
+            </div>
         <div className="w-full h-screen flex flex-col justify-center items-center">
-            <AiOutlineLoading3Quarters color="blue" className="w-6 h-6 animate-spin"/> 
-            <h1 className="animate-pulse text-lg font-semibold text-blue-700">Loading...</h1>
+            <AiOutlineLoading3Quarters color="gray" className="w-6 h-6 animate-spin"/> 
+            <h1 className="animate-pulse text-lg font-semibold text-gray-500">Loading...</h1>
+        </div>
         </div>
 
     )
