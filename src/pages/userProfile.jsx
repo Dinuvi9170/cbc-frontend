@@ -89,36 +89,40 @@ const UserProfile = () => {
   }
 
   return (
-    <div className="pt-[120px] pb-4 px-6 md:px-16 max-w-3xl mx-auto">
-      <div className="bg-white shadow-xl rounded-2xl p-8 flex flex-col items-center border border-gray-100">
+    <div className={`pb-4 px-6 md:px-16 max-w-3xl mx-auto ${user.role==='Admin'?"pt-15 ":"pt-[120px]"}`} >
+      <div className={`bg-white shadow-xl rounded-2xl p-8 items-center border border-gray-100
+        ${user.role === "Admin" && editing ? "flex -ml-48 px-15 w-[1000px] " : "flex flex-col"}`} >
         
-        <div className="relative group">
-          <img
-            src={formData.profileImage || "/icon.png"}
-            alt="Profile"
-            className="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover shadow-md border-4 border-acsent"
-          />
+        <div className={`${user.role === "Admin" && editing ? "flex flex-col space-y-3 w-[500px]" : "flex flex-col items-center"}`}>
+          <div className="relative group" >
+            <img
+              src={formData.profileImage || "/icon.png"}
+              alt="Profile"
+              className="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover shadow-md border-4 border-acsent"
+            />
 
-          {editing && (
-            <label className="absolute bottom-2 right-2 bg-acsent text-white p-2 rounded-full cursor-pointer hover:bg-acsent/90 transition shadow-lg">
-              <BiEdit size={18} />
-              <input
-                type="file"
-                accept="image/*"
-                className="hidden"
-                onChange={handleImageChange}
-              />
-            </label>
-          )}
+            {editing && (
+              <label className={`absolute bg-acsent text-white p-2 rounded-full 
+                cursor-pointer hover:bg-acsent/90 transition shadow-lg ${user.role==="Admin"?"bottom-2 left-30":"bottom-2 right-2"}`} >
+                <BiEdit size={18} />
+                <input
+                  type="file"
+                  accept="image/*"
+                  className="hidden"
+                  onChange={handleImageChange}
+                />
+              </label>
+            )}
+          </div>
+        
+          <h2 className="text-3xl font-bold text-acsent mt-4">
+            {user.firstName} {user.lastName}
+          </h2>
+
+          <p className="text-gray-600 mt-1">{user.email}</p>
+          <p className="text-gray-600 mt-1">{user.phone}</p>
+          <p className="text-gray-600 mt-1">{user.address}</p>
         </div>
-
-        <h2 className="text-3xl font-bold text-acsent mt-4">
-          {user.firstName} {user.lastName}
-        </h2>
-
-        <p className="text-gray-600 mt-1">{user.email}</p>
-        <p className="text-gray-600 mt-1">{user.phone}</p>
-        <p className="text-gray-600 mt-1">{user.address}</p>
 
         {!editing && (
           <button
@@ -130,7 +134,7 @@ const UserProfile = () => {
         )}
 
         {editing && (
-          <div className="mt-6 w-full space-y-4">
+          <div className="mt-6 w-full space-y-4" >
 
             <input
               type="text"
@@ -192,10 +196,8 @@ const UserProfile = () => {
                 Cancel
               </button>
             </div>
-
           </div>
         )}
-
       </div>
     </div>
   );

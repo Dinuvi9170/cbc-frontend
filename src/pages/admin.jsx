@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { LuLogOut } from "react-icons/lu";
 import { CgProfile } from "react-icons/cg";
+import UserProfile from "./userProfile";
 
 const Admin =()=>{
     const location= useLocation();
@@ -111,7 +112,10 @@ const Admin =()=>{
                                 <CgProfile  />
                                 <span 
                                     className="cursor-pointer hover:underline text-gray-700 text-sm block p-2"
-                                    onClick={handlelogout}
+                                    onClick={()=>{
+                                        navigate(`/admin/profile/${currentuser._id}`);
+                                        setUserdropdown(false);
+                                    }}
                                 >
                                 My Profile
                                 </span>
@@ -137,6 +141,7 @@ const Admin =()=>{
                     <Route path='reviews' element={<h1>Reviews</h1>}/>
                     <Route path='addproducts' element={<Addproducts/>}/>
                     <Route path='editproducts' element={<EditProducts/>}/>
+                    <Route path='profile/:userId' element={<UserProfile/>}/>
                     
                 </Routes>
             </div>
