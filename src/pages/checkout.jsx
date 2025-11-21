@@ -18,8 +18,24 @@ const Checkout = () => {
         if (token) {
         try {
             const decoded = jwtDecode(token);
-            setUser(decoded);
-            Setname(decoded.firstName + " " + decoded.lastName);
+            const userId = decoded._id;
+            
+            const fetchUser = async ()=>{
+                try{
+                    const res=await axios.get(import.meta.env.VITE_BACKEND_URL+`/api/users/${userId}`,{
+                        headers:{
+                            "Authorization":"Bearer "+token
+                        }
+                    });
+                    setUser(res.data);
+                    Setname(res.data.firstName+' '+res.data.lastName);
+                    SetAddress(res.data.address || '');
+                    SetPhone(res.data.phone || '');
+                }catch(error){
+                    console.log(error);
+                }
+            }
+            fetchUser();
         } catch (err) {
             console.error("Token decode failed:", err);
         }
@@ -70,8 +86,8 @@ const Checkout = () => {
         const orderInformation={
             name:name,
             email: user.email,
-            address,
-            phone,
+            address:address,
+            phone:phone,
             products:cart.map((item)=>({
                 productId:item.productId,
                 quantity:item.quantity
@@ -88,6 +104,7 @@ const Checkout = () => {
             console.log(res.data)
             setCart([]);
             localStorage.removeItem("cart");
+            window.dispatchEvent(new Event("cartUpdated"));
             navigate('/products')
 
         }catch(err){

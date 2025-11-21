@@ -53,7 +53,7 @@ const Admin =()=>{
         localStorage.removeItem('currentuser');
         Setcurrentuser(null);
         setUserdropdown(false);
-        navigate("/login");
+        navigate("/");
     };
 
     const path=location.pathname;

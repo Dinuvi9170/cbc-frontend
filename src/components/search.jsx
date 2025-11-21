@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 const Search = () => {
     const [query, setQuery] = useState("");
     const navigate = useNavigate();
-    console.log(query);
 
     const handleSearch = () => {
         if (!query.trim()) return;

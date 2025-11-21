@@ -19,6 +19,9 @@ import ForgetPassword from './pages/forgetpassword'
 import Category from './pages/catergories';
 import SkinTypeProducts from './pages/skinTypeProducts';
 import SearchProductsPage from './pages/headerSearchpage';
+import About from './pages/about';
+import Contact from './pages/contact';
+import UserProfile from './pages/userProfile';
 
 function App() {
   return (
@@ -41,6 +44,9 @@ function App() {
                 <Route path='/categories/:category' element={<Category/>}/>
                 <Route path='/skintypes/:skinType' element={<SkinTypeProducts/>}/>
                 <Route path='/productSearch' element={<SearchProductsPage/>}/>
+                <Route path='/about' element={<About/>}/>
+                <Route path='/contact' element={<Contact/>}/>
+                <Route path='/profile/:userId' element={<UserProfile/>}/>
               </Route>
               <Route element={<AdminLayout/>}>
                 <Route path='/admin/*' element={<Admin/>}/>

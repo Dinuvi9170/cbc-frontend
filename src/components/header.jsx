@@ -57,6 +57,7 @@ const Header = () => {
         localStorage.removeItem('currentuser');
         Setcurrentuser(null);
         SetdropdownOpen(false);
+        navigate('/');
     };
 
     return (
@@ -224,12 +225,12 @@ const Header = () => {
                                     <div className="border-b w-full border-acsent mt-2"/> 
                                     <div className="flex items-center px-5">
                                         <CgProfile stroke="black"  />
-                                        <span 
+                                        <Link to={`/profile/${currentuser._id}`}
                                             className="cursor-pointer hover:underline text-gray-700 text-sm block p-2"
-                                            onClick={handlelogout}
+                                            onClick={()=>window.reload()}
                                         >
                                         My Profile
-                                        </span>
+                                        </Link>
                                     </div>
                                     <div className="flex items-center -mt-2 px-5">
                                         <LuLogOut stroke="black"  />

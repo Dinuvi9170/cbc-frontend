@@ -60,7 +60,7 @@ const Login =()=>{
     })
 
     return(
-        <div className="w-full h-screen bg-[url('/images/cosmetic-oil.jpg')] bg-center bg-cover flex justify-evenly items-center">
+        <div className="w-full md:pt-[80px] h-screen bg-[url('/images/cosmetic-oil.jpg')] bg-center bg-cover flex justify-evenly items-center">
             <div className="w-1/2 h-full hidden md:block"></div>
             <div className="md:w-1/2 w-full h-full flex justify-center items-center">
                 <div className="flex flex-col justify-center items-center w-[500px] h-[600px] bg-white-400 md:shadow-xl rounded-lg backdrop-blur-md relative">
