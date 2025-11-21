@@ -89,7 +89,7 @@ const Admin =()=>{
                     onClick={()=>setUserdropdown(!userdropdown)}
                     >
                         <div className="flex border-2 rounded-full w-12 justify-center items-center h-12 border-secondary fixed">
-                            <img src={currentuser?.profileimage} alt="profile_image" className="w-10 h-10 object-cover"/>                           
+                            <img src={currentuser?.profileimage} alt="profile_image" className="w-10 h-10 object-cover rounded-full"/>                           
                         </div>
                         <div className="ml-12 flex flex-col text-acsent">                            
                             <span className="px-2 text-sm font-semibold">{currentuser?.firstName} {currentuser?.lastName}</span>
@@ -100,7 +100,7 @@ const Admin =()=>{
                         <div className="absolute flex flex-col left-71 bottom-5 mt-2 bg-white shadow rounded w-60 p-2 z-50">
                             <div className="flex rounded-lg gap-2 items-center px-1 py-1">
                                 <div className="flex border-2 rounded-full w-12 justify-center items-center h-12 border-secondary fixed">
-                                    <img src={currentuser.profileimage} alt="profile_image" className="w-10 h-10 object-cover"/>                           
+                                    <img src={currentuser.profileimage} alt="profile_image" className="w-10 h-10 object-cover rounded-full"/>                           
                                 </div>
                                 <div className="ml-12 flex flex-col text-acsent">                            
                                     <span className="px-2 text-sm font-semibold">{currentuser.firstName} {currentuser.lastName}</span>

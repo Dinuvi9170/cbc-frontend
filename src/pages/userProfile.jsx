@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import toast from "react-hot-toast";
 import { BiEdit } from "react-icons/bi";
 import { useParams } from "react-router-dom";
+import mediaupload from "../utils/mediaUpload";
 
 const UserProfile = () => {
   const { userId } = useParams();
@@ -10,28 +11,28 @@ const UserProfile = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [editing, setEditing] = useState(false);
   const [formData, setFormData] = useState({});
+  
+  const fetchUserData = async () => {
+    const token = localStorage.getItem("token");
+    try {
+      const res = await axios.get(
+        import.meta.env.VITE_BACKEND_URL + `/api/users/${userId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      setUser(res.data);
+    } catch (error) {
+      toast.error("Error fetching user");
+      console.log(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   useEffect(() => {
-    const fetchUserData = async () => {
-      const token = localStorage.getItem("token");
-      try {
-        const res = await axios.get(
-          import.meta.env.VITE_BACKEND_URL + `/api/users/${userId}`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-        setUser(res.data);
-      } catch (error) {
-        toast.error("Error fetching user");
-        console.log(error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
     fetchUserData();
   }, [userId]);
 
@@ -45,23 +46,33 @@ const UserProfile = () => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
+
   // change image
-  const handleImageChange = (e) => {
+  const handleImageChange = async (e) => {
     const file = e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        setFormData((prev) => ({ ...prev, profileImage: reader.result }));
-      };
-      reader.readAsDataURL(file);
+    if(!file) return;
+
+    try{
+      const url = await mediaupload(file);
+      console.log(url);
+      setFormData((prev) => ({ ...prev, profileimage: url }));
+      toast.success("Image uploaded successfully");
+    }catch(error){
+      toast.error("Error uploading image");
+      console.log(error);
     }
   };
 
   const handleSave = async () => {
     const token = localStorage.getItem("token");
 
+    if (!formData.profileimage) {
+      toast.error("Profile image missing");
+      return;
+    }
+
     try {
-      await axios.put(
+      const res= await axios.put(
         import.meta.env.VITE_BACKEND_URL+ `/api/users/${user.email}`,
         formData,
         {
@@ -70,8 +81,11 @@ const UserProfile = () => {
           },
         }
       );
-
-      setUser(formData);
+      const updatedUser = res.data.user || formData; 
+      localStorage.setItem("currentuser", JSON.stringify(updatedUser));
+      window.dispatchEvent(new Event("storage"));
+      setUser(updatedUser);
+      setFormData(updatedUser);
       setEditing(false);
       toast.success("Profile updated successfully!");
     } catch (error) {
@@ -96,7 +110,7 @@ const UserProfile = () => {
         <div className={`${user.role === "Admin" && editing ? "flex flex-col space-y-3 w-[500px]" : "flex flex-col items-center"}`}>
           <div className="relative group" >
             <img
-              src={formData.profileImage || "/icon.png"}
+              src={formData.profileimage || "/icon.png"}
               alt="Profile"
               className="w-32 h-32 md:w-40 md:h-40 rounded-full object-cover shadow-md border-4 border-acsent"
             />
@@ -127,7 +141,8 @@ const UserProfile = () => {
         {!editing && (
           <button
             onClick={() => setEditing(true)}
-            className="mt-6 flex items-center gap-2 px-6 py-2 bg-acsent text-white font-semibold rounded-lg hover:bg-acsent/90 transition"
+            className="mt-6 flex items-center gap-2 px-6 py-2 bg-acsent text-white font-semibold rounded-lg 
+            hover:cursor-pointer hover:bg-acsent/90 transition"
           >
             <BiEdit size={18} /> Edit Profile
           </button>
@@ -184,14 +199,14 @@ const UserProfile = () => {
             <div className="flex justify-center gap-4 mt-4">
               <button
                 onClick={handleSave}
-                className="px-6 py-2 bg-acsent text-white font-semibold rounded-lg hover:bg-acsent/90 transition"
+                className="px-6 py-2 bg-acsent text-white font-semibold rounded-lg hover:bg-acsent/90 hover:cursor-pointer transition"
               >
                 Save
               </button>
 
               <button
                 onClick={() => setEditing(false)}
-                className="px-6 py-2 bg-gray-200 text-gray-700 font-semibold rounded-lg hover:bg-gray-300 transition"
+                className="px-6 py-2 bg-gray-200 text-gray-700 font-semibold rounded-lg hover:cursor-pointer hover:bg-gray-300 transition"
               >
                 Cancel
               </button>
