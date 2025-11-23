@@ -60,8 +60,8 @@ const Admin =()=>{
         }
     }
     return(
-        <div className="flex w-full h-screen ">
-            <div className="relative h-full w-[300px] flex flex-col bg-primary px-5 py-5 shadow-lg">
+        <div className="fixed flex w-full h-screen ">
+            <div className="relative h-screen w-[300px] flex flex-col bg-primary px-5 py-5 shadow-lg">
                 <h1 className="text-2xl font-bold text-acsent mb-8 text-center">Admin Panel</h1>
                 <nav className="flex flex-col gap-4 justify-center items-center">
                     <Link to="/admin/products"
@@ -127,7 +127,7 @@ const Admin =()=>{
                     )}
                 </div>
             </div>
-            <div className="h-full w-[calc(100%-300px)] py-5 border-4 border-acsent rounded-lg">
+            <div className="h-screen w-[calc(100%-300px)] py-5 border-4 border-acsent rounded-lg">
                 <Routes>
                     <Route path='products' element={<AdminProducts/>}/>
                     <Route path='users' element={<AdminUser/>}/>

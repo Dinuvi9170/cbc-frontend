@@ -21,6 +21,12 @@ const Login =()=>{
             localStorage.setItem("token",response.data.token);
             localStorage.setItem("currentuser", JSON.stringify(response.data.user));
 
+            if(response.data.user.isblocked===true){
+                toast.error("Your account is blocked");
+                localStorage.removeItem("token");
+                navigate("/login");
+            }
+
             if(response.data.role=="Admin"){
                 navigate('/admin/products');
                 window.location.reload();
@@ -44,6 +50,12 @@ const Login =()=>{
                 const token=res.data.token;
                 localStorage.setItem("token",token);
                 localStorage.setItem("currentuser", JSON.stringify(res.data.user));
+
+                if(res.data.user.isblocked===true){
+                    toast.error("Your account is blocked");
+                    localStorage.removeItem("token");
+                    navigate("/login");
+                }
 
                 if(res.data.role=="Admin"){
                     navigate('/admin/products');
