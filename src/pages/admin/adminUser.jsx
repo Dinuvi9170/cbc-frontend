@@ -31,6 +31,13 @@ const AdminUser =()=>{
         }
     },[isLoading])
 
+    const filtered = users.filter((u) => {
+        return u.email.toLowerCase().includes(search.toLowerCase()) || 
+        u.firstName.toLowerCase().includes(search.toLowerCase()) ||
+        u.lastName.toLowerCase().includes(search.toLowerCase()) ||
+        u.role.toLowerCase().includes(search.toLowerCase())
+    });
+
     const handleStatus= async (userId,newValue)=>{
         const token= localStorage.getItem("token")
             if(!token){
@@ -67,6 +74,7 @@ const AdminUser =()=>{
             <div className="w-full flex flex-col overflow-y-scroll p-4 shadow-md bg-gray-50">
                 <input
                     type="text"
+                    value={search}
                     placeholder="Search by name, email, role..."
                     className="w-full md:w-1/3 z-10 border-2 border-acsent rounded-xl shadow-sm mt-3 px-3 py-3 font-semibold text-lg"
                     onChange={(e) => setSearch(e.target.value)}
@@ -85,9 +93,9 @@ const AdminUser =()=>{
                     </thead>
 
                     <tbody>
-                        {users.map((user) => (
+                        {filtered.map((user) => (
                         <tr key={user._id} className="border-b font-bold border-acsent hover:bg-secondary transition text-md">
-                            <td className="p-3 flex justify-center"><img src={user.profileimage} className="w-15 h-15 rounded-full"/></td>
+                            <td className="p-3 flex justify-center"><img src={user.profileimage} className="w-15 h-15 rounded-full object-cover"/></td>
                             <td className="p-3">{user.firstName} {user.lastName}</td>
                             <td className="p-3">{user.email}</td>
                             <td className="p-3">{user.role}</td>
