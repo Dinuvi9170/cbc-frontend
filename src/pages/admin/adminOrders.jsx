@@ -6,6 +6,7 @@ import { AiOutlineLoading3Quarters } from "react-icons/ai";
 const AdminOrder =()=>{
     const [order,setOrder]=useState([])
     const [isloading,setIsLoading]=useState(true);
+    const [search, setSearch] = useState("");
 
     useEffect(()=>{
         if(isloading){
@@ -29,6 +30,16 @@ const AdminOrder =()=>{
             }
         }
     },[isloading])
+    
+    const filtered = order.filter((o) => {
+        const d= new Date(o.date);
+
+        const date= d.getFullYear().toString() +"-"+(d.getMonth()+1).toString()+"-"+d.getDate().toString();
+        return o.orderId.toString().includes(search.toLowerCase()) || 
+        o.name.toLowerCase().includes(search.toLowerCase()) ||
+        o.email.toLowerCase().includes(search.toLowerCase())||
+        date.includes(search.toLowerCase());
+    });
 
     const handleStatus= async (orderId,newStatus)=>{
         const token= localStorage.getItem("token")
@@ -54,16 +65,23 @@ const AdminOrder =()=>{
     return(
         (isloading)?(
             <div className="w-full h-full flex flex-col justify-center items-center">
-                <AiOutlineLoading3Quarters color="blue" className="w-6 h-6 animate-spin"/> 
-                <h1 className="animate-pulse text--lg font-semibold text-blue-700">Loading...</h1>
+                <AiOutlineLoading3Quarters color="gray" className="w-6 h-6 animate-spin"/> 
+                <h1 className="animate-pulse text--lg font-semibold text-gray-500">Loading...</h1>
             </div>
         ):(order.length<=0)?(
             <div className="w-full h-full flex flex-col pt-20 bg-primary items-center"> 
                 <h1 className="text-2xl font-semibold text-blue-700">No orders available</h1>
             </div>
-        ):(<div className="w-full overflow-y-scroll p-4 shadow-md bg-gray-50">
-            <table className="w-full border-collapse">
-                <thead>
+        ):(<div className="w-full flex flex-col overflow-y-scroll p-4 shadow-md bg-gray-50">
+            <input 
+                type="text"
+                placeholder="Search product ..."
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                className="w-full md:w-1/3 z-10 border-2 border-acsent rounded-xl shadow-sm mt-3 px-3 py-3 font-semibold text-lg "
+            />
+            <table className="w-full border-collapse mt-4">
+                <thead className="bg-acsent text-white uppercase text-sm">
                     <tr className="bg-acsent text-white ">
                         <th className="p-2">Order ID</th>
                         <th className="p-2">Customer</th>
@@ -77,7 +95,7 @@ const AdminOrder =()=>{
                     </tr>
                 </thead>
                 <tbody>
-                    {order.map((el)=>{
+                    {filtered.map((el)=>{
                         return(
                             <React.Fragment key={el.orderId}>
                             <tr key={el.orderId}

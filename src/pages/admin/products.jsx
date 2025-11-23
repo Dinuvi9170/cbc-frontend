@@ -9,6 +9,7 @@ const AdminProducts=()=>{
     const [products,setproducts]= useState([]);
     const navigate= useNavigate();
     const [isLoading,setIsloading]=useState(true);
+    const [search, setSearch] = useState("");
 
     useEffect(
         ()=>{
@@ -32,6 +33,11 @@ const AdminProducts=()=>{
             }
         },[isLoading]
     );
+
+    const filtered = products.filter((p) => {
+        return p.name.toLowerCase().includes(search.toLowerCase()) || p.productId.toString().includes(search);
+    });
+
     const handleDeleteproduct =(productId)=>{
         const token = localStorage.getItem("token");
         if(token===null){
@@ -52,9 +58,18 @@ const AdminProducts=()=>{
     }
     return(
         (!isLoading) ?
-            (<div className="w-full h-full max-h-full overflow-y-scroll relative p-6 bg-gray-50">
-                <Link to="/admin/addproducts" className="mt-3 absolute top-0 right-6 bg-acsent hover:bg-acsent/80 text-white px-8 py-3 rounded-xl font-semibold text-lg shadow-md cursor-pointer">+Add Product</Link>
-                <table className="w-full text-center mt-12  min-w-[800px] ">
+            (<div className="w-full h-full max-h-full overflow-y-scroll p-6 bg-gray-50">
+                <div className="flex gap-4 justify-end">
+                    <input 
+                        type="text"
+                        placeholder="Search product ..."
+                        value={search}
+                        onChange={(e) => setSearch(e.target.value)}
+                        className="w-full md:w-1/3 z-10 border-2 border-acsent rounded-xl shadow-sm mt-3 px-3 py-3 font-semibold text-lg "
+                    />
+                    <Link to="/admin/addproducts" className="mt-3 bg-acsent hover:bg-acsent/80 text-white px-8 py-3 rounded-xl font-semibold text-lg shadow-md cursor-pointer">+Add Product</Link>
+                </div>
+                <table className="w-full text-center mt-5 min-w-[800px] ">
                     <thead className="bg-acsent text-white uppercase text-sm">
                         <tr>
                             <th className="py-3 px-2">productId</th>
@@ -67,7 +82,7 @@ const AdminProducts=()=>{
                         </tr>
                     </thead>
                     <tbody>
-                        {products.map((product)=>{
+                        {filtered.map((product)=>{
                             return(
                                 <tr key={product.productId}
                                     className="border-b border-acsent hover:bg-secondary transition-colors duration-200"
@@ -106,8 +121,8 @@ const AdminProducts=()=>{
             </div>)
             :(
             <div className="w-full h-full flex flex-col justify-center items-center">
-                <AiOutlineLoading3Quarters color="blue" className="w-6 h-6 animate-spin"/> 
-                 <h1 className="animate-pulse text--lg font-semibold text-blue-700">Loading...</h1>
+                <AiOutlineLoading3Quarters color="gray" className="w-6 h-6 animate-spin"/> 
+                 <h1 className="animate-pulse text--lg font-semibold text-gray-500">Loading...</h1>
             </div>)
         
         

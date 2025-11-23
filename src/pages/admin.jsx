@@ -4,10 +4,10 @@ import Addproducts from "./admin/addproduct";
 import EditProducts from "./admin/editproducts";
 import AdminOrder from "./admin/adminOrders";
 import { useEffect, useState } from "react";
-import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { LuLogOut } from "react-icons/lu";
 import { CgProfile } from "react-icons/cg";
 import UserProfile from "./userProfile";
+import AdminUser from "./admin/adminUser";
 
 const Admin =()=>{
     const location= useLocation();
@@ -42,13 +42,7 @@ const Admin =()=>{
         };
     }, []);
 
-    if (loading) {
-        return(
-        <div className="w-full h-screen flex flex-col justify-center items-center">
-            <AiOutlineLoading3Quarters color="blue" className="w-6 h-6 animate-spin"/> 
-            <h1 className="animate-pulse text-lg font-semibold text-blue-700">Loading...</h1>
-        </div>
-    )}
+    if (loading) return null;
     
     const handlelogout = () => {
         localStorage.removeItem('currentuser');
@@ -136,7 +130,7 @@ const Admin =()=>{
             <div className="h-full w-[calc(100%-300px)] py-5 border-4 border-acsent rounded-lg">
                 <Routes>
                     <Route path='products' element={<AdminProducts/>}/>
-                    <Route path='users' element={<h1>Users</h1>}/>
+                    <Route path='users' element={<AdminUser/>}/>
                     <Route path='orders' element={<AdminOrder/>}/>
                     <Route path='reviews' element={<h1>Reviews</h1>}/>
                     <Route path='addproducts' element={<Addproducts/>}/>

@@ -4,6 +4,7 @@ import toast from "react-hot-toast";
 import { BiEdit } from "react-icons/bi";
 import { useParams } from "react-router-dom";
 import mediaupload from "../utils/mediaUpload";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 const UserProfile = () => {
   const { userId } = useParams();
@@ -73,7 +74,7 @@ const UserProfile = () => {
 
     try {
       const res= await axios.put(
-        import.meta.env.VITE_BACKEND_URL+ `/api/users/${user.email}`,
+        import.meta.env.VITE_BACKEND_URL+ `/api/users/${userId}`,
         formData,
         {
           headers: { 
@@ -96,8 +97,9 @@ const UserProfile = () => {
 
   if (isLoading || !user) {
     return (
-      <div className="pt-[120px] text-center text-gray-500 text-lg">
-        Loading profile...
+      <div className="pt-[120px] justify-center items-center w-full h-screen flex flex-col ">
+        <AiOutlineLoading3Quarters color="gray" className="w-6 h-6 animate-spin"/> 
+        <h1 className="animate-pulse text-lg font-semibold text-gray-500">Loading...</h1>
       </div>
     );
   }
