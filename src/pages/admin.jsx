@@ -8,6 +8,7 @@ import { LuLogOut } from "react-icons/lu";
 import { CgProfile } from "react-icons/cg";
 import UserProfile from "./userProfile";
 import AdminUser from "./admin/adminUser";
+import AdminReviews from "./admin/adminReview";
 
 const Admin =()=>{
     const location= useLocation();
@@ -132,7 +133,7 @@ const Admin =()=>{
                     <Route path='products' element={<AdminProducts/>}/>
                     <Route path='users' element={<AdminUser/>}/>
                     <Route path='orders' element={<AdminOrder/>}/>
-                    <Route path='reviews' element={<h1>Reviews</h1>}/>
+                    <Route path='reviews' element={<AdminReviews/>}/>
                     <Route path='addproducts' element={<Addproducts/>}/>
                     <Route path='editproducts' element={<EditProducts/>}/>
                     <Route path='profile/:userId' element={<UserProfile/>}/>

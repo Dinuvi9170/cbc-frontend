@@ -93,7 +93,17 @@ const AdminUser =()=>{
                     </thead>
 
                     <tbody>
-                        {filtered.map((user) => (
+                        {filtered.length === 0 ? (
+                            <tr>
+                            <td
+                                colSpan="5"
+                                className="text-center text-center py-8 text-gray-500 italic"
+                            >
+                                No users found
+                            </td>
+                            </tr>
+                        ) :
+                        filtered.map((user) => (
                         <tr key={user._id} className="border-b font-bold border-acsent hover:bg-secondary transition text-md">
                             <td className="p-3 flex justify-center"><img src={user.profileimage} className="w-15 h-15 rounded-full object-cover"/></td>
                             <td className="p-3">{user.firstName} {user.lastName}</td>

@@ -95,7 +95,17 @@ const AdminOrder =()=>{
                     </tr>
                 </thead>
                 <tbody>
-                    {filtered.map((el)=>{
+                    {filtered.length === 0 ? (
+                        <tr>
+                        <td
+                            colSpan="5"
+                            className="text-center pl-80 py-8 text-gray-500 italic"
+                        >
+                            No orders found
+                        </td>
+                        </tr>
+                    ) :
+                    filtered.map((el)=>{
                         return(
                             <React.Fragment key={el.orderId}>
                             <tr key={el.orderId}

@@ -82,7 +82,17 @@ const AdminProducts=()=>{
                         </tr>
                     </thead>
                     <tbody>
-                        {filtered.map((product)=>{
+                        {filtered.length === 0 ? (
+                            <tr>
+                            <td
+                                colSpan="5"
+                                className="text-center py-8 text-gray-500 italic"
+                            >
+                                No products found
+                            </td>
+                            </tr>
+                        ) :
+                        filtered.map((product)=>{
                             return(
                                 <tr key={product.productId}
                                     className="border-b border-acsent hover:bg-secondary transition-colors duration-200"
