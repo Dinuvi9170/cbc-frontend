@@ -70,14 +70,6 @@ const CustomerOrders = () => {
     );
   }
 
-  if (filteredOrders.length === 0) {
-    return (
-      <div className="w-full h-screen flex flex-col bg-primary pt-[100px] md:pt-[140px] items-center">
-        <p className="text-2xl font-semibold text-gray-500">No orders found</p>
-      </div>
-    );
-  }
-
   return (
     <div className="max-w-6xl pt-[100px] md:pt-[140px] mx-auto p-4">
       <h1 className="text-3xl font-bold text-gray-700 mb-6">My Orders</h1>
@@ -91,7 +83,13 @@ const CustomerOrders = () => {
       </div>
 
       <div className="flex flex-col gap-5">
-        {filteredOrders.map((order) => {
+        {
+          (filteredOrders.length === 0)? (
+            <div className="w-full h-screen flex flex-col bg-primary pt-[100px] md:pt-[140px] items-center">
+              <p className="text-2xl font-semibold text-gray-500">No orders found</p>
+            </div>
+          ):
+        filteredOrders.map((order) => {
           const formattedDate = new Date(order.date).toLocaleDateString(
             "en-US",
             { year: "numeric", month: "long", day: "numeric" }

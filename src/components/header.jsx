@@ -71,7 +71,7 @@ const Header = () => {
                     onClick={() => SetsidebarOpen(true)}
                 />
                 {sidebarOpen && (
-                    <div className="w-full h-full fixed -mt-3 bg-[#00000060]">
+                    <div className="w-full h-full z-50 fixed -mt-3 bg-[#00000060]">
                         <div className="w-3/4 relative h-full shadow-md bg-white">
                             <div className="h-[80px] w-full shadow-md flex justify-center items-center">
                                 <img src={"/beautylogoremovebgpreview.png"} className="w-[40px] h-[40px] object-cover" />
@@ -213,7 +213,7 @@ const Header = () => {
                                 onClick={() => SetdropdownOpen(!dropdownOpen)}
                             />
                             {dropdownOpen && (
-                                <div className="absolute right-0 top-11 mt-2 bg-primary shadow-lg rounded w-70 p-2">
+                                <div className="absolute right-0 top-11 mt-2 bg-primary shadow-lg rounded w-70 z-40 p-2">
                                     <div className="flex rounded-lg gap-2 items-center px-1 py-1">
                                         <div className="flex border-2 rounded-full w-12 justify-center items-center h-12 border-secondary fixed">
                                             <img src={currentuser.profileimage} alt="profile_image" className="w-10 h-10 object-cover rounded-full"/>                           
