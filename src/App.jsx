@@ -22,6 +22,8 @@ import SearchProductsPage from './pages/headerSearchpage';
 import About from './pages/about';
 import Contact from './pages/contact';
 import UserProfile from './pages/userProfile';
+import CustomerOrders from './pages/Myorders';
+import OrderDetails from './pages/orderView';
 
 function App() {
   return (
@@ -47,6 +49,8 @@ function App() {
                 <Route path='/about' element={<About/>}/>
                 <Route path='/contact' element={<Contact/>}/>
                 <Route path='/profile/:userId' element={<UserProfile/>}/>
+                <Route path='/myorders' element={<CustomerOrders/>}/>
+                <Route path='/myorders/:orderId' element={<OrderDetails/>}/>
               </Route>
               <Route element={<AdminLayout/>}>
                 <Route path='/admin/*' element={<Admin/>}/>

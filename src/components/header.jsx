@@ -7,6 +7,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import Search from "./search";
 import { LuLogOut } from "react-icons/lu";
 import { SlArrowDown } from "react-icons/sl";
+import { FiShoppingCart } from "react-icons/fi";
 
 const Header = () => {
     const [sidebarOpen, SetsidebarOpen] = useState(false);
@@ -230,6 +231,15 @@ const Header = () => {
                                             onClick={()=>window.reload()}
                                         >
                                         My Profile
+                                        </Link>
+                                    </div>
+                                    <div className="flex items-center px-5">
+                                        <FiShoppingCart stroke="black"/>
+                                        <Link to="/myorders"
+                                            className="cursor-pointer hover:underline text-gray-700 text-sm block p-2"
+                                            onClick={()=>window.reload()}
+                                        >
+                                            My Orders
                                         </Link>
                                     </div>
                                     <div className="flex items-center -mt-2 px-5">
