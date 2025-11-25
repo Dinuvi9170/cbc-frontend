@@ -14,7 +14,7 @@ const ProductSideBar = () => {
     }
 
     return(
-        <div className="fixed w-full h-screen ">
+        <div className="w-full h-screen  ">
             <div className="relative h-full w-[300px] flex items-center flex-col bg-primary px-5 py-5 shadow-lg">
                 <div className=" w-40 h-40">
                     <img src="/images/cosmetics22.png" alt="cosmetic" 

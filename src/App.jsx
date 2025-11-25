@@ -24,6 +24,7 @@ import Contact from './pages/contact';
 import UserProfile from './pages/userProfile';
 import CustomerOrders from './pages/Myorders';
 import OrderDetails from './pages/orderView';
+import MyReviews from './pages/myReviews';
 
 function App() {
   return (
@@ -51,6 +52,7 @@ function App() {
                 <Route path='/profile/:userId' element={<UserProfile/>}/>
                 <Route path='/myorders' element={<CustomerOrders/>}/>
                 <Route path='/myorders/:orderId' element={<OrderDetails/>}/>
+                <Route path='myreviews' element={<MyReviews/>}/>
               </Route>
               <Route element={<AdminLayout/>}>
                 <Route path='/admin/*' element={<Admin/>}/>

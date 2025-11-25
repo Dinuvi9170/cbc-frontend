@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import { BsArrowRight } from "react-icons/bs";
+import { FaStar } from "react-icons/fa";
+import Testimonials from "../components/tesmonials";
 
 const Home= ()=> {
   const categories = [
@@ -15,6 +17,27 @@ const Home= ()=> {
     {name:"Oily",url:'/skintypes/Oily'}, 
     {name:"Normal",url:'/skintypes/Normal'},
     { name:"Sensitive",url:'/skintypes/Sensitive'}
+  ];
+
+  const testimonials = [
+    {
+      name: "Sarah K.",
+      text: "Absolutely love the quality! The best cosmetics experience ever.",
+      rating: 5,
+      avatar: "/avatars/sarah.jpg",
+    },
+    {
+      name: "Michael B.",
+      text: "Amazing products and super fast delivery. Highly recommended!",
+      rating: 4,
+      avatar: "/avatars/michael.jpg",
+    },
+    {
+      name: "Emily R.",
+      text: "My skin has never looked better. Wonderful customer support too!",
+      rating: 5,
+      avatar: "/avatars/emily.jpg",
+    },
   ];
   return (
     <div className="bg-primary pt-[80px]">
@@ -88,25 +111,9 @@ const Home= ()=> {
           ))}
         </div>
       </section>
+      <Testimonials/>
 
-      {/* TESTIMONIALS */}
-      <section className="px-6 md:px-20 py-12 bg-[#FFF4F7]">
-        <h2 className="text-2xl md:text-3xl font-bold text-acsent">What Customers Say</h2>
-
-        <div className="mt-6 grid md:grid-cols-3 gap-6">
-          {[1,2,3].map((i) => (
-            <div key={i} className="bg-white p-6 rounded-xl shadow">
-              <p className="italic text-gray-600">
-                "Absolutely love the quality! The best cosmetics experience ever."
-              </p>
-              <p className="mt-4 font-bold text-[#821742]">— Sarah K.</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* NEWSLETTER */}
-      <section className="px-6 md:px-20 py-12 text-center">
+      <section className="px-6 md:px-20 py-12 text-center bg-gradient-to-r from-pink-50 to-pink-100">
         <h2 className="text-2xl md:text-3xl font-bold text-acsent">Stay Updated</h2>
         <p className="text-gray-600 mt-2">Get exclusive offers, tips and new arrivals.</p>
 
@@ -116,17 +123,11 @@ const Home= ()=> {
             placeholder="Enter your email"
             className="w-64 px-4 py-2 rounded-l-full border border-gray-300"
           />
-          <button className="px-6 py-2 bg-[#821742] text-white rounded-r-full">
+          <button className="px-6 py-2 bg-[#821742] text-white rounded-r-full hover:cursor-pointer">
             Subscribe
           </button>
         </div>
       </section>
-
-      {/* FOOTER */}
-      <footer className="bg-acsent text-white py-8 text-center">
-        <p>© 2025 BeautyLux Cosmetics. All Rights Reserved.</p>
-      </footer>
-
     </div>
   );
 }

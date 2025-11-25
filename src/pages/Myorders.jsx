@@ -72,7 +72,7 @@ const CustomerOrders = () => {
 
   return (
     <div className="max-w-6xl pt-[100px] md:pt-[140px] mx-auto p-4">
-      <h1 className="text-3xl font-bold text-gray-700 mb-6">My Orders</h1>
+      <h1 className="text-3xl font-bold text-acsent mb-6">My Orders</h1>
       <div className="flex justify-between items-center mb-8">
         <input
           type="text"

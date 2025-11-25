@@ -37,10 +37,10 @@ const Category = () => {
 
     return (
         <div className="w-full flex min-h-screen pt-[80px]">
-            <div className="w-full h-screen flex overflow-y-scroll">
-                <div className="hidden md:block md:w-[300px] h-screen">
-                    <ProductSideBar />
-                </div>
+            <div className="hidden md:block md:w-[300px]">
+                <ProductSideBar />
+            </div>
+            <div className="md:w-[calc(100%-300px)] h-screen flex overflow-y-scroll">
                 <div className="md:w-[calc(100%-(300px))] px-8 md:px-0 py-5 max-w-5xl mx-auto">
                     <h1 className="text-2xl md:text-4xl font-bold text-acsent text-center md:text-start mb-6">
                     {category} Products ✨
