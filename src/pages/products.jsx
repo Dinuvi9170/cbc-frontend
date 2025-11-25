@@ -52,11 +52,13 @@ const Products= ()=>{
                 })
                 }
               </div>
-              <Pagination
-                currentPage={currentPage}
-                totalPages={totalPages}
-                onPageChange={(page) => setCurrentPage(page)}
-              />
+              <div className={`${filtered.length===0?"hidden":"block"}`}>
+                <Pagination
+                  currentPage={currentPage}
+                  totalPages={totalPages}
+                  onPageChange={(page) => setCurrentPage(page)}
+                />
+              </div>
             </div>
           </div> 
         </div>

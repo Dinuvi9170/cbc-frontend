@@ -3,12 +3,19 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import ProductCard from "../components/productCard";
 import ProductSideBar from "../components/productSidebar";
+import Pagination from "../components/pagination";
 
 const Category = () => {
     const [products, setProducts] = useState([]);
     const [search, setSearch] = useState("");
     const [skinFilter, setSkinFilter] = useState("");
     const {category}= useParams();
+    const [currentPage, setCurrentPage] = useState(1);
+
+    const ITEMS_PER_PAGE = 12;
+    const totalPages = Math.ceil(products.length / ITEMS_PER_PAGE);
+    const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+    const currentProducts = products.slice(startIndex, startIndex + ITEMS_PER_PAGE);
 
     const loadProducts = async () => {
         try {
@@ -29,7 +36,7 @@ const Category = () => {
     }, [category]);
 
 
-    const filtered = products.filter((p) => {
+    const filtered = currentProducts.filter((p) => {
         const matchesSearch = p.name.toLowerCase().includes(search.toLowerCase());
         const matchesSkin = skinFilter ? p.skinType.includes(skinFilter) : true;
         return matchesSearch && matchesSkin;
@@ -52,7 +59,7 @@ const Category = () => {
                             placeholder="Search here..."
                             value={search}
                             onChange={(e) => setSearch(e.target.value)}
-                            className="w-full md:w-1/3 p-2 z-10 border rounded-lg shadow-sm"
+                            className="w-full md:w-1/3 p-2 z-10 border-2 border-acsent rounded-lg shadow-sm"
                         />
 
                         <select
@@ -72,6 +79,13 @@ const Category = () => {
                     {filtered.map((p) => (
                         <ProductCard key={p.productId} product={p} />
                     ))}
+                    </div>
+                    <div className={`${filtered.length===0?"hidden":"block"}`}>
+                        <Pagination 
+                            currentPage={currentPage}
+                            totalPages={totalPages}
+                            onPageChange={(page) => setCurrentPage(page)}
+                        />
                     </div>
 
                     {filtered.length === 0 && (

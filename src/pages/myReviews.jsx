@@ -43,7 +43,7 @@ const MyReviews = () => {
 
     return (
         <div className="max-w-6xl pt-[100px] md:pt-[140px] mx-auto p-4">
-            <h1 className="text-3xl font-bold flex items-center gap-2 mb-6">
+            <h1 className="text-3xl text-acsent font-bold flex items-center gap-2 mb-6">
                 My Reviews
             </h1>
             {reviews.length === 0 ? (
