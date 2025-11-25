@@ -1,9 +1,12 @@
 import { Link } from "react-router-dom";
 import { BsArrowRight } from "react-icons/bs";
-import { FaStar } from "react-icons/fa";
 import Testimonials from "../components/tesmonials";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const Home= ()=> {
+  const [products,setProducts]= useState([]);
+  const [Loading,setLoading] =useState(true);
   const categories = [
     { name: "Makeup", img: "/images/categories/makeup.jpg",url: "/categories/Makeup" },
     { name: "Skincare", img: "/images/categories/skincare.jpg", url: "/categories/Skincare" },
@@ -39,6 +42,23 @@ const Home= ()=> {
       avatar: "/avatars/emily.jpg",
     },
   ];
+
+  useEffect(() => {
+    const fetchTrending = async () => {
+      try {
+        const res = await axios.get(import.meta.env.VITE_BACKEND_URL+'/api/trending/trendingproducts'
+        );
+        setProducts(res.data);
+      } catch (err) {
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+  fetchTrending();
+}, []);
+
   return (
     <div className="bg-primary pt-[80px]">
       <section className="relative h-[70vh] w-full">
@@ -81,17 +101,16 @@ const Home= ()=> {
         </div>
       </section>
 
-      {/* TRENDING PRODUCTS */}
       <section className="px-6 md:px-20 py-12 bg-white rounded-t-3xl shadow-inner">
         <h2 className="text-2xl md:text-3xl font-bold text-acsent">Trending Now</h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mt-6">
-          {[1,2,3,4].map((i) => (
-            <div key={i} className="bg-[#FFF4F7] rounded-xl p-4 shadow hover:shadow-xl duration-300">
-              <img src={`/images/prod${i}.jpg`} className="h-40 w-full object-cover rounded-lg" />
-              <h3 className="font-semibold mt-3">Luxury Lipstick {i}</h3>
-              <p className="text-gray-500">Soft Matte Finish</p>
-              <p className="text-acsent font-bold mt-2">$24</p>
+          {products.map((i,index) => (
+            <div key={index} className="bg-[#FFF4F7] rounded-xl p-4 shadow hover:shadow-xl duration-300">
+              <img src={i.images?.[0]} className="h-40 w-full object-cover rounded-lg" />
+              <h3 className="font-semibold mt-3">{i.name} {""}</h3>
+              <p className="text-gray-500">{i.alternativeNames?.[0]}</p>
+              <p className="text-acsent font-bold mt-2">Rs. {i.normalPrice.toFixed(2)}</p>
             </div>
           ))}
         </div>

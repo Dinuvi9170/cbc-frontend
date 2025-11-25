@@ -30,7 +30,7 @@ const Cart =()=>{
 
     return(
         (cart.length<=0)?(
-        <div className="w-full h-full flex flex-col pt-50 bg-primary items-center"> 
+        <div className="w-full h-screen flex flex-col pt-50 bg-primary items-center"> 
             <h1 className="text-2xl font-semibold text-gray-500">Your cart is empty</h1>
         </div>
         ):(

@@ -22,6 +22,9 @@ const ProductOverview =()=>{
                     setProduct(response.data);
                     setStatus("success");
                     console.log(response.data);
+
+                    axios.post(import.meta.env.VITE_BACKEND_URL+`/api/trending/view/${response.data._id}`)
+                    .catch(err => console.error("Error incrementing view:", err));
                 }
             ).catch(
                 (err)=>{
@@ -53,6 +56,9 @@ const ProductOverview =()=>{
         toast.success("product added to the cart successfully")
         setQuantity(qty)
         Addcart(product,quantity)
+
+        axios.post(import.meta.env.VITE_BACKEND_URL + `/api/trending/cart/${product._id}`)
+        .catch(err => console.error("Error incrementing add-to-cart:", err));
     }
 
     return(

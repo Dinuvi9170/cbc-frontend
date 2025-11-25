@@ -52,7 +52,7 @@ const Products= ()=>{
                 })
                 }
               </div>
-              <div className={`${filtered.length===0?"hidden":"block"}`}>
+              <div className={`${products.length===0?"hidden":"block"}`}>
                 <Pagination
                   currentPage={currentPage}
                   totalPages={totalPages}

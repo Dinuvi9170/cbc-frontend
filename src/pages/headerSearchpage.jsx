@@ -34,10 +34,10 @@ const SearchProductsPage = () => {
     return (
         (!isLoading && products.length>0)?
         <div className='w-full flex min-h-screen pt-[80px] '>
+          <div className="hidden md:block md:w-[300px]">
+            <ProductSideBar />
+          </div>
           <div className="w-full h-screen flex overflow-y-scroll">
-            <div className="hidden md:block md:w-[300px] h-screen">
-              <ProductSideBar />
-            </div>
             <div className="md:w-[calc(100%-(300px))] py-5 max-w-5xl mx-auto">
               <h1 className="text-2xl text-center md:text-start font-bold mb-6">Search Results for: "{query}"</h1>
               <div className='grid md:grid-cols-4 gap-4 px-8 md:px-0 py-2 justify-center'>
