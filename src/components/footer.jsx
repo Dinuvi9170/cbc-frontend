@@ -1,4 +1,5 @@
 import { FaFacebookF, FaInstagram, FaTwitter } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
     return (
@@ -6,7 +7,7 @@ const Footer = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-8">
             <div className="md:w-[500px] flex flex-col gap-4">
-                <div className="flex items-center gap-4">
+                <Link to='/' className="flex items-center gap-4">
                 <div className="w-20 h-20 bg-white rounded-full flex justify-center items-center">
                     <img
                     src={"/beautylogoremovebgpreview.png"}
@@ -15,7 +16,7 @@ const Footer = () => {
                     />
                 </div>
                 <h2 className="text-2xl font-bold text-white">Beauty Cosmetics</h2>
-                </div>
+                </Link>
                 <p className="text-white">
                 Premium beauty products for skincare, haircare, and makeup. 
                 Enhancing your natural glow with quality and style.

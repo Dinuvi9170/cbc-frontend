@@ -25,6 +25,8 @@ import UserProfile from './pages/userProfile';
 import CustomerOrders from './pages/Myorders';
 import OrderDetails from './pages/orderView';
 import MyReviews from './pages/myReviews';
+import ScrollToTop from './components/scrollto top';
+import ProtectedAdminRoute from './components/layout/Authorizedlayout';
 
 function App() {
   return (
@@ -32,6 +34,7 @@ function App() {
       <BrowserRouter>
         <Toaster position="top-right"/>
         <div>
+          <ScrollToTop/>
           <Routes>
             <Route element={<RootLayout/>}>
               <Route element={<MainLayout/>}>
@@ -54,9 +57,11 @@ function App() {
                 <Route path='/myorders/:orderId' element={<OrderDetails/>}/>
                 <Route path='myreviews' element={<MyReviews/>}/>
               </Route>
-              <Route element={<AdminLayout/>}>
-                <Route path='/admin/*' element={<Admin/>}/>
-                <Route path='/orders/:orderId' element={<OrderProducts/>}/>
+              <Route element={<ProtectedAdminRoute/> }>
+                <Route element={<AdminLayout/>}>
+                  <Route path='/admin/*' element={<Admin/>}/>
+                  <Route path='/orders/:orderId' element={<OrderProducts/>}/>
+                </Route>
               </Route>
               <Route path='*' element={<h1>404 Not Found</h1>}/>
             </Route>

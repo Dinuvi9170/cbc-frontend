@@ -20,7 +20,7 @@ const UserProfile = () => {
         import.meta.env.VITE_BACKEND_URL + `/api/users/${userId}`,
         {
           headers: {
-            Authorization: `Bearer ${token}`,
+            "Authorization": `Bearer ${token}`,
           },
         }
       );

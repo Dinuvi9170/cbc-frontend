@@ -14,7 +14,7 @@ const About = () => {
         <section className="grid md:grid-cols-2 gap-12 items-center mb-16">
             <div>
             <img
-                src="/about-hero.jpg"
+                src="/images/beauty.jpg"
                 alt="Beauty Products"
                 className="rounded-xl shadow-lg w-full object-cover"
             />
@@ -35,19 +35,19 @@ const About = () => {
             <h2 className="text-3xl font-bold text-center text-acsent mb-10">Our Core Values</h2>
             <div className="grid md:grid-cols-3 gap-8">
             <div className="p-6 bg-white shadow-lg rounded-xl text-center hover:scale-105 transform transition duration-300">
-                <img src="/icons/quality.png" alt="Quality" className="mx-auto mb-4 w-16 h-16" />
+                <img src="/images/quality.jpg" alt="Quality" className="mx-auto mb-4 w-16 h-16 object-cover" />
                 <h3 className="text-xl font-semibold mb-2">Quality & Excellence</h3>
                 <p className="text-gray-600">We maintain the highest standards in all our products.</p>
             </div>
 
             <div className="p-6 bg-white shadow-lg rounded-xl text-center hover:scale-105 transform transition duration-300">
-                <img src="/icons/sustainability.png" alt="Sustainability" className="mx-auto mb-4 w-16 h-16" />
+                <img src="/images/sustainable.jpg" alt="Sustainability" className="mx-auto mb-4 w-16 h-16 object-cover" />
                 <h3 className="text-xl font-semibold mb-2">Sustainability</h3>
                 <p className="text-gray-600">We are committed to ethical practices and eco-friendly products.</p>
             </div>
 
             <div className="p-6 bg-white shadow-lg rounded-xl text-center hover:scale-105 transform transition duration-300">
-                <img src="/icons/innovation.png" alt="Innovation" className="mx-auto mb-4 w-16 h-16" />
+                <img src="/images/innovation.jpg" alt="Innovation" className="mx-auto mb-4 w-16 h-16 object-cover" />
                 <h3 className="text-xl font-semibold mb-2">Innovation</h3>
                 <p className="text-gray-600">We continuously innovate to create products that meet modern beauty needs.</p>
             </div>
