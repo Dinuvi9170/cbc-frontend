@@ -38,7 +38,7 @@ const Products= ()=>{
             <ProductSideBar />
           </div>
           <div className="md:w-[calc(100%-300px)]  h-screen flex overflow-y-scroll">
-            <div className="md:w-[calc(100%-(300px))] py-5 max-w-5xl mx-auto ">
+            <div className=" py-5 max-w-5xl mx-auto ">
               <h1 className="text-2xl md:text-4xl font-bold text-acsent text-center md:text-start mb-6">
                   All Products ✨
                   </h1>

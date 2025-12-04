@@ -6,11 +6,11 @@ const ProductCard = ({ product }) => {
         to={`/products/${product.productId}`}
         className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 z-40 group w-full"
         >
-        <div className="w-full h-48 overflow-hidden">
+        <div className="flex justify-center items-center w-full h-48 overflow-hidden">
             <img
             src={product.images?.[0] || "/images/placeholder.jpg"}
             alt={product.name}
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+            className="w-full h-55 object-cover group-hover:scale-105 transition-transform duration-300"
             />
         </div>
 

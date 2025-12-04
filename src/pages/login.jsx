@@ -73,7 +73,40 @@ const Login =()=>{
 
     return(
         <div className="w-full md:pt-[80px] h-screen bg-[url('/images/cosmetic-oil.jpg')] bg-center bg-cover flex justify-evenly items-center">
-            <div className="w-1/2 h-full hidden md:block"></div>
+            <div className="w-1/2 h-full hidden md:flex flex-col justify-center items-center bg-primary/60 backdrop-blur-sm">
+                <div className="flex flex-col items-center mb-6">
+                    <img 
+                        src="/beautylogoremovebgpreview.png" 
+                        alt="Company Logo"
+                        className="w-28 h-28 object-contain mb-4"
+                    />
+                    <h1 className="text-acsent text-4xl font-bold tracking-wide">
+                        Beauty Cosmatics
+                    </h1>
+                    <p className="text-acsent/80 text-sm mt-2 tracking-wider font-bold text-center px-6">
+                        Discover beauty that’s made for you
+                    </p>
+                    </div>
+
+                    <div className="w-24 h-[2px] bg-acsent mb-8"></div>
+
+                    <div className="px-10">
+                    <p className="text-acsent/90 text-lg font-bold text-center leading-7">
+                        Welcome back! 
+                        <br />
+                        Log in to explore premium products designed for your skin type, lifestyle, and natural beauty.
+                    </p>
+                    </div>
+
+                    <div className="flex gap-6 mt-10">
+                    <div className="bg-acsent/10 px-4 py-2 rounded-full text-acsent text-sm">
+                        ✔ 100% Organic
+                    </div>
+                    <div className="bg-acsent/10 px-4 py-2 rounded-full text-acsent text-sm">
+                        ✔ Dermatologist Tested
+                    </div>
+                </div>
+            </div>
             <div className="md:w-1/2 w-full h-full flex justify-center items-center">
                 <div className="flex flex-col justify-center items-center w-[500px] h-[600px] bg-white-400 md:shadow-xl rounded-lg backdrop-blur-md relative">
                     <button 
@@ -82,6 +115,7 @@ const Login =()=>{
                     Register
                     </button>
                     <form className="px-10 flex flex-col gap-4 justify-center items-center text-lg" >
+                        <h1 className="text-acsent text-3xl font-bold">Login</h1>
                         <label className="text-center font-semibold">Email:</label>
                         <input
                             type="email"
